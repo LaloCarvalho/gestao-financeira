@@ -5,7 +5,7 @@ export const Container = styled.div`
 `;
 
 export const DivChildren = styled.div`
-  min-height: 380px;
+  min-height: 396px;
 `;
 
 export const Footer = styled.div`
@@ -35,7 +35,6 @@ export const Div = styled.div`
   text-decoration: none;
   text-align: center;
   width: 80%;
-  margin: 30px auto;
 `;
 
 export const Hr = styled.hr`
