@@ -5,20 +5,37 @@ export const Container = styled.div`
 `;
 
 export const DivChildren = styled.div`
-  min-height: 396px;
+  min-height: 376px;
 `;
 
 export const Footer = styled.div`
+  padding-bottom: 20px;
 `;
 
 export const A = styled.a`
   color: #FFFFFF8C;
-  text-decoration: none;
+  text-decoration: none;  
 
   &:hover {
     color: rgba(255,255,255,.75);
     cursor: pointer;
   }
+`;
+
+export const AFooter = styled.a`
+  color: #FFFFFF8C;
+  text-decoration: none;
+  padding-left: 10%;
+
+  &:hover {
+    color: rgba(255,255,255,.75);
+    cursor: pointer;
+  }
+`;
+
+export const DivCopyright = styled.div`
+  color: #FFFFFF8C;
+  padding-left: 5%;
 `;
 
 export const H5 = styled.h5`
