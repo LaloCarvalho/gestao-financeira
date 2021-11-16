@@ -1,9 +1,11 @@
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 import {
+  createTheme,
   FormControl,
   IconButton,
   InputAdornment,
   InputLabel,
+  makeStyles,
   MenuItem,
   OutlinedInput,
   Select,
@@ -19,6 +21,9 @@ const SignUp: React.FC = () => {
   const [gender, setGender] = useState<SelectProps>();
   const [email, setEmail] = useState<string>("");
   const [confirmEmail, setConfirmEmail] = useState<string>("");
+  const [day, setDay] = useState<string>("");
+  const [month, setMonth] = useState<SelectProps>();
+  const [year, setYear] = useState<string>("");
   const [password, setPassword] = useState<PasswordState>({
     password: "",
     showPassword: false,
@@ -30,6 +35,21 @@ const SignUp: React.FC = () => {
   const genders = [
     { value: 1, label: "Masculino" },
     { value: 2, label: "Feminino" },
+  ];
+
+  const months = [
+    { value: 1, label: "Janeiro" },
+    { value: 2, label: "Fevereiro" },
+    { value: 3, label: "Março" },
+    { value: 4, label: "Abril" },
+    { value: 5, label: "Maio" },
+    { value: 6, label: "Junho" },
+    { value: 7, label: "Julho" },
+    { value: 8, label: "Agosto" },
+    { value: 9, label: "Setembro" },
+    { value: 10, label: "Outubro" },
+    { value: 11, label: "Novembro" },
+    { value: 12, label: "Dezembro" },
   ];
 
   useEffect(() => {
@@ -68,7 +88,7 @@ const SignUp: React.FC = () => {
     <Container>
       <div className="container-fluid text-center text-md-left">
         <div className="row">
-          <DivForm className="col-md-6">
+          <DivForm className="col-md-12">
             <h1>Cadastre-se</h1>
             <FormControl sx={{ m: 1, width: 350 }}>
               <TextBox
@@ -90,6 +110,35 @@ const SignUp: React.FC = () => {
                   </MenuItem>
                 ))}
               </Select>
+            </FormControl>
+            <FormControl sx={{ m: 1, width: 120 }}>
+              <TextBox
+                id="outlined-basic"
+                label="Dia"
+                variant="outlined"
+                onChange={(event: any) => setDay(event.target.value)}
+              />
+            </FormControl>
+            <FormControl sx={{ m: 1, width: 150 }}>
+              <InputLabel>Mês</InputLabel>
+              <Select
+                onChange={(event: any) => setMonth(event.target.value)}
+                input={<OutlinedInput label="Mês" />}
+              >
+                {months.map((month) => (
+                  <MenuItem key={month.label} value={month.value}>
+                    {month.label}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+            <FormControl sx={{ m: 1, width: 120 }}>
+              <TextBox
+                id="outlined-basic"
+                label="Ano"
+                variant="outlined"
+                onChange={(event: any) => setYear(event.target.value)}
+              />
             </FormControl>
 
             <FormControl sx={{ m: 1, width: 350 }}>
@@ -127,11 +176,7 @@ const SignUp: React.FC = () => {
                       onMouseDown={handleMouseDownPassword}
                       edge="end"
                     >
-                      {password.showPassword ? (
-                        <VisibilityOff />
-                      ) : (
-                        <Visibility />
-                      )}
+                      {password.showPassword ? (<VisibilityOff />) : (<Visibility />)}
                     </IconButton>
                   </InputAdornment>
                 }
@@ -140,16 +185,14 @@ const SignUp: React.FC = () => {
             </FormControl>
 
             <FormControl sx={{ m: 1, width: 350 }} variant="outlined">
-              <InputLabel htmlFor="outlined-adornment-password">
+              <InputLabel htmlFor="outlined-adornment-password-confirmation">
                 Confirme a Senha
               </InputLabel>
               <OutlinedInput
-                id="outlined-adornment-password"
+                id="outlined-adornment-password-confirmation"
                 type={confirmPassword.showPassword ? "text" : "password"}
                 value={confirmPassword.password}
-                onChange={(event: any) =>
-                  setConfirmPassword(event.target.value)
-                }
+                onChange={(event: any) => setConfirmPassword(event.target.value)}
                 endAdornment={
                   <InputAdornment position="end">
                     <IconButton
@@ -158,11 +201,7 @@ const SignUp: React.FC = () => {
                       onMouseDown={handleMouseDownConfirmationPassword}
                       edge="end"
                     >
-                      {confirmPassword.showPassword ? (
-                        <VisibilityOff />
-                      ) : (
-                        <Visibility />
-                      )}
+                      {confirmPassword.showPassword ? (<VisibilityOff />) : (<Visibility />)}
                     </IconButton>
                   </InputAdornment>
                 }
@@ -170,15 +209,6 @@ const SignUp: React.FC = () => {
               />
             </FormControl>
           </DivForm>
-          <div className="col-md-6">
-            <img
-              alt=""
-              src={finances}
-              width="300"
-              height="300"
-              className="d-inline-block align-top"
-            />{" "}
-          </div>
         </div>
       </div>
     </Container>
