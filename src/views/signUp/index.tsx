@@ -1,5 +1,6 @@
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 import {
+  createMuiTheme,
   createTheme,
   FormControl,
   IconButton,
@@ -10,6 +11,7 @@ import {
   OutlinedInput,
   Select,
   TextField,
+  ThemeProvider,
 } from "@mui/material";
 import finances from "./assets/finances.jpg";
 import React, { useEffect, useState } from "react";
@@ -83,7 +85,13 @@ const SignUp: React.FC = () => {
   ) => {
     event.preventDefault();
   };
-
+  const theme = createMuiTheme({
+    palette: {
+      primary: {
+        main: '#ff5722' //your color
+      }
+    }
+  });
   return (
     <Container>
       <div className="container-fluid text-center text-md-left">
@@ -91,12 +99,14 @@ const SignUp: React.FC = () => {
           <DivForm className="col-md-12">
             <h1>Cadastre-se</h1>
             <FormControl sx={{ m: 1, width: 350 }}>
-              <TextBox
-                id="outlined-basic"
-                label="Nome"
-                variant="outlined"
-                onChange={(event: any) => setName(event.target.value)}
-              />
+              <ThemeProvider theme={theme}>
+                <TextBox
+                  id="outlined-basic"
+                  label="Nome"
+                  variant="outlined"
+                  onChange={(event: any) => setName(event.target.value)}
+                />
+              </ThemeProvider>
             </FormControl>
             <FormControl sx={{ m: 1, width: 350 }}>
               <InputLabel>Gênero</InputLabel>
