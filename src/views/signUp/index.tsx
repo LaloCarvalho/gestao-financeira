@@ -1,43 +1,33 @@
 import { Visibility, VisibilityOff } from "@material-ui/icons";
+import { createTheme } from '@mui/material/styles'
 import {
-  createMuiTheme,
-  createTheme,
+  Checkbox,
   FormControl,
+  FormControlLabel,
   IconButton,
   InputAdornment,
   InputLabel,
-  makeStyles,
   MenuItem,
   OutlinedInput,
   Select,
-  TextField,
   ThemeProvider,
 } from "@mui/material";
-import finances from "./assets/finances.jpg";
 import React, { useEffect, useState } from "react";
-import { SelectProps, PasswordState } from "../../types";
+import { SelectProps } from "../../types";
 import { Container, DivForm, TextBox } from "./styles";
 
 const SignUp: React.FC = () => {
   const [name, setName] = useState<string>("");
-  const [gender, setGender] = useState<SelectProps>();
   const [email, setEmail] = useState<string>("");
   const [confirmEmail, setConfirmEmail] = useState<string>("");
   const [day, setDay] = useState<string>("");
   const [month, setMonth] = useState<SelectProps>();
   const [year, setYear] = useState<string>("");
-  const [password, setPassword] = useState<PasswordState>({
-    password: "",
-    showPassword: false,
-  });
-  const [confirmPassword, setConfirmPassword] = useState<PasswordState>({
-    password: "",
-    showPassword: false,
-  });
-  const genders = [
-    { value: 1, label: "Masculino" },
-    { value: 2, label: "Feminino" },
-  ];
+  const [password, setPassword] = useState<string>("");
+  const [showPassword, setshowPassword] = useState<boolean>(false);
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
+  const [showConfirmPassword, setShowConfirmPassword] = useState<boolean>(false);
+  const [genderChecked, setGenderChecked] = useState<number>(0);
 
   const months = [
     { value: 1, label: "Janeiro" },
@@ -55,18 +45,27 @@ const SignUp: React.FC = () => {
   ];
 
   useEffect(() => {
-    if (gender) console.log(gender);
-  }, [gender]);
+    if (confirmEmail) console.log(confirmEmail);
+  }, [confirmEmail]);
+
+  useEffect(() => {
+    if (month) console.log(month);
+  }, [month]);
+
+  useEffect(() => {
+    if (genderChecked) console.log(genderChecked);
+  }, [genderChecked]);
+
+  useEffect(() => {
+    if (name) console.log(name);
+  }, [name]);
 
   useEffect(() => {
     if (email) console.log(email);
   }, [email]);
 
   const handleClickShowPassword = () => {
-    setPassword({
-      ...password,
-      showPassword: !password.showPassword,
-    });
+    showPassword === false ? setshowPassword(true) : setshowPassword(false);
   };
   const handleMouseDownPassword = (
     event: React.MouseEvent<HTMLButtonElement>
@@ -74,10 +73,7 @@ const SignUp: React.FC = () => {
     event.preventDefault();
   };
   const handleClickShowConfirmationPassword = () => {
-    setConfirmPassword({
-      ...confirmPassword,
-      showPassword: !confirmPassword.showPassword,
-    });
+    showConfirmPassword === false ? setShowConfirmPassword(true) : setShowConfirmPassword(false);
   };
 
   const handleMouseDownConfirmationPassword = (
@@ -85,13 +81,14 @@ const SignUp: React.FC = () => {
   ) => {
     event.preventDefault();
   };
-  const theme = createMuiTheme({
+  const theme = createTheme({
     palette: {
       primary: {
         main: '#ff5722' //your color
       }
     }
   });
+  
   return (
     <Container>
       <div className="container-fluid text-center text-md-left">
@@ -101,29 +98,44 @@ const SignUp: React.FC = () => {
             <FormControl sx={{ m: 1, width: 350 }}>
               <ThemeProvider theme={theme}>
                 <TextBox
-                  id="outlined-basic"
+                  id="outlined-basic-name"
                   label="Nome"
                   variant="outlined"
                   onChange={(event: any) => setName(event.target.value)}
                 />
               </ThemeProvider>
             </FormControl>
-            <FormControl sx={{ m: 1, width: 350 }}>
-              <InputLabel>Gênero</InputLabel>
-              <Select
-                onChange={(event: any) => setGender(event.target.value)}
-                input={<OutlinedInput label="Gênero" />}
-              >
-                {genders.map((gender) => (
-                  <MenuItem key={gender.label} value={gender.value}>
-                    {gender.label}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
+            <FormControlLabel
+              value="1"
+              control={<Checkbox
+                onChange={() => setGenderChecked(1)}
+                 sx={{
+                  color: "black",
+                  '&.Mui-checked': {
+                    color: "green",
+                },
+              }}   />}
+              label="Masculino"
+              labelPlacement="end"
+              checked={ genderChecked === 1 }
+            />
+            <FormControlLabel
+              value="2"
+              control={<Checkbox 
+                onChange={() => setGenderChecked(2)}
+                sx={{
+                  color: "black",
+                  '&.Mui-checked': {
+                    color: "green",
+                },
+              }}   />}
+              label="Feminino"
+              labelPlacement="end"
+              checked={ genderChecked === 2 }
+            />
             <FormControl sx={{ m: 1, width: 120 }}>
               <TextBox
-                id="outlined-basic"
+                id="outlined-basic-day"
                 label="Dia"
                 variant="outlined"
                 onChange={(event: any) => setDay(event.target.value)}
@@ -132,11 +144,16 @@ const SignUp: React.FC = () => {
             <FormControl sx={{ m: 1, width: 150 }}>
               <InputLabel>Mês</InputLabel>
               <Select
-                onChange={(event: any) => setMonth(event.target.value)}
+                onChange={(event: any) => 
+                  {
+                    setMonth(event.target.value);
+                  }
+                }
                 input={<OutlinedInput label="Mês" />}
+                defaultValue={""}
               >
                 {months.map((month) => (
-                  <MenuItem key={month.label} value={month.value}>
+                  <MenuItem key={month.value} value={month.value}>
                     {month.label}
                   </MenuItem>
                 ))}
@@ -144,7 +161,7 @@ const SignUp: React.FC = () => {
             </FormControl>
             <FormControl sx={{ m: 1, width: 120 }}>
               <TextBox
-                id="outlined-basic"
+                id="outlined-basic-year"
                 label="Ano"
                 variant="outlined"
                 onChange={(event: any) => setYear(event.target.value)}
@@ -153,7 +170,7 @@ const SignUp: React.FC = () => {
 
             <FormControl sx={{ m: 1, width: 350 }}>
               <TextBox
-                id="outlined-basic"
+                id="outlined-basic-email"
                 label="Email"
                 variant="outlined"
                 onChange={(event: any) => setEmail(event.target.value)}
@@ -162,7 +179,7 @@ const SignUp: React.FC = () => {
 
             <FormControl sx={{ m: 1, width: 350 }}>
               <TextBox
-                id="outlined-basic"
+                id="outlined-basic-confirm-email"
                 label="Confirme o Email"
                 variant="outlined"
                 onChange={(event: any) => setConfirmEmail(event.target.value)}
@@ -175,8 +192,8 @@ const SignUp: React.FC = () => {
               </InputLabel>
               <OutlinedInput
                 id="outlined-adornment-password"
-                type={password.showPassword ? "text" : "password"}
-                value={password.password}
+                type={showPassword ? "text" : "password"}
+                value={password}
                 onChange={(event: any) => setPassword(event.target.value)}
                 endAdornment={
                   <InputAdornment position="end">
@@ -186,7 +203,7 @@ const SignUp: React.FC = () => {
                       onMouseDown={handleMouseDownPassword}
                       edge="end"
                     >
-                      {password.showPassword ? (<VisibilityOff />) : (<Visibility />)}
+                      {showPassword ? (<VisibilityOff />) : (<Visibility />)}
                     </IconButton>
                   </InputAdornment>
                 }
@@ -200,8 +217,8 @@ const SignUp: React.FC = () => {
               </InputLabel>
               <OutlinedInput
                 id="outlined-adornment-password-confirmation"
-                type={confirmPassword.showPassword ? "text" : "password"}
-                value={confirmPassword.password}
+                type={showConfirmPassword ? "text" : "password"}
+                value={confirmPassword}
                 onChange={(event: any) => setConfirmPassword(event.target.value)}
                 endAdornment={
                   <InputAdornment position="end">
@@ -211,7 +228,7 @@ const SignUp: React.FC = () => {
                       onMouseDown={handleMouseDownConfirmationPassword}
                       edge="end"
                     >
-                      {confirmPassword.showPassword ? (<VisibilityOff />) : (<Visibility />)}
+                      {showConfirmPassword ? (<VisibilityOff />) : (<Visibility />)}
                     </IconButton>
                   </InputAdornment>
                 }
