@@ -1,16 +1,15 @@
-import { Visibility, VisibilityOff } from "@material-ui/icons";
 import { createTheme } from "@mui/material/styles";
 import React, { useEffect, useState } from "react";
 import { SelectProps } from "../../types";
-import { SignUpButton } from "./materialStyles";
 import { Col, Row } from "react-bootstrap";
+import SignUpButton from "../../components/button";
+import TextBox from "../../components/textBox";
+import PasswordBox from "../../components/passwordBox";
 import {
   Checkbox,
   FormControl,
   FormControlLabel,
   FormLabel,
-  IconButton,
-  InputAdornment,
   InputLabel,
   MenuItem,
   OutlinedInput,
@@ -25,7 +24,6 @@ import {
   DivOptions,
   GenderContainer,
   H1,
-  TextBox,
 } from "./styles";
 
 const SignUp: React.FC = () => {
@@ -36,10 +34,7 @@ const SignUp: React.FC = () => {
   const [month, setMonth] = useState<SelectProps>();
   const [year, setYear] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [showPassword, setshowPassword] = useState<boolean>(false);
   const [confirmPassword, setConfirmPassword] = useState<string>("");
-  const [showConfirmPassword, setShowConfirmPassword] =
-    useState<boolean>(false);
   const [genderChecked, setGenderChecked] = useState<number>(0);
 
   const months = [
@@ -58,30 +53,9 @@ const SignUp: React.FC = () => {
   ];
 
   useEffect(() => {
-    if (confirmEmail) console.log(confirmEmail);
-  }, [confirmEmail]);
+    if (name) console.log(name);
+  }, [name]);
 
-  const handleClickShowPassword = () => {
-    showPassword === false ? setshowPassword(true) : setshowPassword(false);
-  };
-
-  const handleMouseDownPassword = (
-    event: React.MouseEvent<HTMLButtonElement>
-  ) => {
-    event.preventDefault();
-  };
-
-  const handleClickShowConfirmationPassword = () => {
-    showConfirmPassword === false
-      ? setShowConfirmPassword(true)
-      : setShowConfirmPassword(false);
-  };
-
-  const handleMouseDownConfirmationPassword = (
-    event: React.MouseEvent<HTMLButtonElement>
-  ) => {
-    event.preventDefault();
-  };
   const theme = createTheme({
     palette: {
       primary: {
@@ -101,19 +75,15 @@ const SignUp: React.FC = () => {
           <Col md={3}></Col>
           <DivForm className="col-md-6 col-md-offset-1">
             <H1>Cadastre-se</H1>
-            <FormControl sx={{ m: 1, width: 440 }}>
-              <ThemeProvider theme={theme}>
-                <TextBox
-                  id="outlined-basic-name"
-                  label="Nome"
-                  variant="outlined"
-                  onChange={(event: any) => setName(event.target.value)}
-                />
-              </ThemeProvider>
-            </FormControl>
+            <TextBox
+              width={440}
+              id="outlined-basic-name"
+              label="Nome"
+              onChange={(event: any) => setName(event.target.value)}
+            ></TextBox>
             <br />
             <GenderContainer>
-              <FormLabel component="legend">Gênero:</FormLabel>
+              <FormLabel component="legend">Gênero</FormLabel>
               <DivOptions>
                 <FormControlLabel
                   value="1"
@@ -154,16 +124,14 @@ const SignUp: React.FC = () => {
             <br />
             <ThemeProvider theme={theme}>
               <DateContainer>
-                <FormLabel component="legend">Data de Nascimento:</FormLabel>
-                <FormControl sx={{ m: 1, width: 90 }}>
-                  <TextBox
-                    id="outlined-basic-day"
-                    label="Dia"
-                    variant="outlined"
-                    inputProps={{ maxLength: 2 }}
-                    onChange={(event: any) => setDay(event.target.value)}
-                  />
-                </FormControl>
+                <FormLabel component="legend">Data de Nascimento</FormLabel>
+                <TextBox
+                  width={90}
+                  id="outlined-basic-day"
+                  label="Dia"
+                  onChange={(event: any) => setDay(event.target.value)}
+                  inputProps={2}
+                ></TextBox>
                 <FormControl sx={{ m: 1, width: 150 }}>
                   <InputLabel>Mês</InputLabel>
                   <Select
@@ -180,104 +148,44 @@ const SignUp: React.FC = () => {
                     ))}
                   </Select>
                 </FormControl>
-                <FormControl sx={{ m: 1, width: 120 }}>
-                  <TextBox
-                    id="outlined-basic-year"
-                    label="Ano"
-                    variant="outlined"
-                    inputProps={{ maxLength: 4 }}
-                    onChange={(event: any) => setYear(event.target.value)}
-                  />
-                </FormControl>
+                <TextBox
+                  width={120}
+                  id="outlined-basic-year"
+                  label="Ano"
+                  onChange={(event: any) => setYear(event.target.value)}
+                  inputProps={4}
+                ></TextBox>
               </DateContainer>
-            </ThemeProvider>{" "}
-            <br />
-            <ThemeProvider theme={theme}>
-              <FormControl sx={{ m: 1, width: 440 }}>
-                <TextBox
-                  id="outlined-basic-email"
-                  label="Email"
-                  variant="outlined"
-                  onChange={(event: any) => setEmail(event.target.value)}
-                />
-              </FormControl>
             </ThemeProvider>
             <br />
-            <ThemeProvider theme={theme}>
-              <FormControl sx={{ m: 1, width: 440 }}>
-                <TextBox
-                  id="outlined-basic-confirm-email"
-                  label="Confirme o Email"
-                  variant="outlined"
-                  onChange={(event: any) => setConfirmEmail(event.target.value)}
-                />
-              </FormControl>
-            </ThemeProvider>
+            <TextBox
+              width={440}
+              id="outlined-basic-email"
+              label="Email"
+              onChange={(event: any) => setEmail(event.target.value)}
+            ></TextBox>
             <br />
-            <ThemeProvider theme={theme}>
-              <FormControl sx={{ m: 1, width: 440 }} variant="outlined">
-                <InputLabel htmlFor="outlined-adornment-password">
-                  Senha
-                </InputLabel>
-                <OutlinedInput
-                  id="outlined-adornment-password"
-                  type={showPassword ? "text" : "password"}
-                  value={password}
-                  onChange={(event: any) => setPassword(event.target.value)}
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
-                        edge="end"
-                      >
-                        {showPassword ? <VisibilityOff /> : <Visibility />}
-                      </IconButton>
-                    </InputAdornment>
-                  }
-                  label="Senha"
-                />
-              </FormControl>
-            </ThemeProvider>
+            <TextBox
+              width={440}
+              id="outlined-basic-confirm-email"
+              label="Confirme o Email"
+              onChange={(event: any) => setConfirmEmail(event.target.value)}
+            ></TextBox>
             <br />
-            <ThemeProvider theme={theme}>
-              <FormControl sx={{ m: 1, width: 440 }} variant="outlined">
-                <InputLabel htmlFor="outlined-adornment-password-confirmation">
-                  Confirme a Senha
-                </InputLabel>
-                <OutlinedInput
-                  id="outlined-adornment-password-confirmation"
-                  type={showConfirmPassword ? "text" : "password"}
-                  value={confirmPassword}
-                  onChange={(event: any) =>
-                    setConfirmPassword(event.target.value)
-                  }
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowConfirmationPassword}
-                        onMouseDown={handleMouseDownConfirmationPassword}
-                        edge="end"
-                      >
-                        {showConfirmPassword ? (
-                          <VisibilityOff />
-                        ) : (
-                          <Visibility />
-                        )}
-                      </IconButton>
-                    </InputAdornment>
-                  }
-                  label="Confirme a Senha"
-                />
-              </FormControl>
-            </ThemeProvider>
+            <PasswordBox
+              id="outlined-basic-password"
+              onChange={(event: any) => setPassword(event.target.value)}
+              label="Senha"
+            ></PasswordBox>
             <br />
-            <SignUpButton 
-              variant="contained"
-              onClick={(e) => handleClick(e, "clicked")}
-            >Cadastrar
+            <PasswordBox
+              id="outlined-basic-password-confirmation"
+              onChange={(event: any) => setConfirmPassword(event.target.value)}
+              label="Confirme a Senha"
+            ></PasswordBox>
+            <br />
+            <SignUpButton onClick={(e) => handleClick(e, "clicked")}>
+              Cadastrar
             </SignUpButton>
           </DivForm>
           <Col md={3}></Col>

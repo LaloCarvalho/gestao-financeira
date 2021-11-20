@@ -1,7 +1,8 @@
-import { styled } from "@material-ui/core";
+// import { styled } from "@material-ui/core";
+import { styled } from '@mui/material/styles';
 import { Button } from "@mui/material";
 
-export const SignUpButton = styled(Button)({
+export const PurpleButton = styled(Button)({
   boxShadow: 'none',
   textTransform: 'none',
   fontSize: 18,

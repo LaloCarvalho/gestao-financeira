@@ -1,0 +1,67 @@
+import { createTheme } from "@mui/material/styles";
+import React, { useState } from "react";
+import { Visibility, VisibilityOff } from "@material-ui/icons";
+import {
+  FormControl,
+  IconButton,
+  InputAdornment,
+  InputLabel,
+  OutlinedInput,
+  ThemeProvider,
+} from "@mui/material";
+
+interface passordBoxProps {
+  id: string;
+  onChange: (event: any) => void;
+  label: string;
+}
+
+const PasswordBox: React.FC<passordBoxProps> = ({ onChange, id, label }: passordBoxProps) => {
+  const [showPassword, setshowPassword] = useState<boolean>(false);
+
+  const handleClickShowPassword = () => {
+    showPassword === false ? setshowPassword(true) : setshowPassword(false);
+  };
+
+  const handleMouseDownPassword = (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    event.preventDefault();
+  };
+
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: "#662275",
+      },
+    },
+  });
+
+  return (
+    <ThemeProvider theme={theme}>
+      <FormControl sx={{ m: 1, width: 440 }} variant="outlined">
+        <InputLabel htmlFor="outlined-adornment-password">{label}</InputLabel>
+        <OutlinedInput
+          id={id}
+          type={showPassword ? "text" : "password"}
+          onChange={onChange}
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton
+                aria-label="toggle password visibility"
+                onClick={handleClickShowPassword}
+                onMouseDown={handleMouseDownPassword}
+                edge="end"
+              >
+                {showPassword ? <VisibilityOff /> : <Visibility />}
+              </IconButton>
+            </InputAdornment>
+          }
+          label={label}
+        />
+      </FormControl>
+    </ThemeProvider>
+  );
+};
+
+export default PasswordBox;
