@@ -1,22 +1,24 @@
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 import { createTheme } from '@mui/material/styles'
 import {
+  ButtonProps,
   Checkbox,
   FormControl,
   FormControlLabel,
+  FormLabel,
   IconButton,
   InputAdornment,
   InputLabel,
   MenuItem,
   OutlinedInput,
   Select,
+  styled,
   ThemeProvider,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { SelectProps } from "../../types";
-import { Container, DivForm, TextBox } from "./styles";
-import MaleIcon from '@mui/icons-material/Male';
-import MaleOutlinedIcon from '@mui/icons-material/MaleOutlined';
+import { Container, DateContainer, DivForm, GenderContainer, H1, SignUpButton, TextBox } from "./styles";
+import { Button } from "@material-ui/core";
 
 
 const SignUp: React.FC = () => {
@@ -96,9 +98,10 @@ const SignUp: React.FC = () => {
     <Container>
       <div className="container-fluid text-center text-md-left">
         <div className="row">
-          <DivForm className="col-md-12">
-            <h1>Cadastre-se</h1>
-            <FormControl sx={{ m: 1, width: 350 }}>
+          <div className="col-md-3"></div>
+          <DivForm className="col-md-6 col-md-offset-1">
+            <H1>Cadastre-se</H1>
+            <FormControl sx={{ m: 1, width: 440 }}>
               <ThemeProvider theme={theme}>
                 <TextBox
                   id="outlined-basic-name"
@@ -107,13 +110,15 @@ const SignUp: React.FC = () => {
                   onChange={(event: any) => setName(event.target.value)}
                 />
               </ThemeProvider>
-            </FormControl>
+            </FormControl><br/> 
+            <GenderContainer>
+            <FormLabel component="legend">Gênero:</FormLabel>          
             <FormControlLabel
               value="1"
               control={<Checkbox
                 onChange={() => setGenderChecked(1)}
                  sx={{
-                  color: "black",
+                  color: "#ccc",
                   '&.Mui-checked': {
                     color: "green",
                 },
@@ -127,7 +132,7 @@ const SignUp: React.FC = () => {
               control={<Checkbox 
                 onChange={() => setGenderChecked(2)}
                 sx={{
-                  color: "black",
+                  color: "#ccc",
                   '&.Mui-checked': {
                     color: "green",
                 },
@@ -135,8 +140,24 @@ const SignUp: React.FC = () => {
               label="Feminino"
               labelPlacement="end"
               checked={ genderChecked === 2 }
-            />
-            <FormControl sx={{ m: 1, width: 120 }}>
+            /> 
+            <FormControlLabel
+              value="3"
+              control={<Checkbox 
+                onChange={() => setGenderChecked(3)}
+                sx={{
+                  color: "#ccc",
+                  '&.Mui-checked': {
+                    color: "green",
+                },
+              }}   />}
+              label="Não Binário"
+              labelPlacement="end"
+              checked={ genderChecked === 3 }
+            /></GenderContainer><br/>  
+            <DateContainer>
+            <FormLabel component="legend">Data de Nascimento:</FormLabel>     
+            <FormControl sx={{ m: 1, width: 90 }}>                       
               <TextBox
                 id="outlined-basic-day"
                 label="Dia"
@@ -170,26 +191,27 @@ const SignUp: React.FC = () => {
                 onChange={(event: any) => setYear(event.target.value)}
               />
             </FormControl>
+            </DateContainer>   <br/>
 
-            <FormControl sx={{ m: 1, width: 350 }}>
+            <FormControl sx={{ m: 1, width: 440 }}>
               <TextBox
                 id="outlined-basic-email"
                 label="Email"
                 variant="outlined"
                 onChange={(event: any) => setEmail(event.target.value)}
               />
-            </FormControl>
+            </FormControl><br/>
 
-            <FormControl sx={{ m: 1, width: 350 }}>
+            <FormControl sx={{ m: 1, width: 440 }}>
               <TextBox
                 id="outlined-basic-confirm-email"
                 label="Confirme o Email"
                 variant="outlined"
                 onChange={(event: any) => setConfirmEmail(event.target.value)}
               />
-            </FormControl>
+            </FormControl><br/>
 
-            <FormControl sx={{ m: 1, width: 350 }} variant="outlined">
+            <FormControl sx={{ m: 1, width: 440 }} variant="outlined">
               <InputLabel htmlFor="outlined-adornment-password">
                 Senha
               </InputLabel>
@@ -212,9 +234,9 @@ const SignUp: React.FC = () => {
                 }
                 label="Senha"
               />
-            </FormControl>
+            </FormControl><br/>
 
-            <FormControl sx={{ m: 1, width: 350 }} variant="outlined">
+            <FormControl sx={{ m: 1, width: 440 }} variant="outlined">
               <InputLabel htmlFor="outlined-adornment-password-confirmation">
                 Confirme a Senha
               </InputLabel>
@@ -237,8 +259,12 @@ const SignUp: React.FC = () => {
                 }
                 label="Confirme a Senha"
               />
-            </FormControl>
+            </FormControl><br/>
+            <SignUpButton variant="contained">
+              Cadastrar
+            </SignUpButton>
           </DivForm>
+          <div className="col-md-3"></div>
         </div>
       </div>
     </Container>
