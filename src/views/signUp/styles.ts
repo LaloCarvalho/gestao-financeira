@@ -1,16 +1,17 @@
 import styled from 'styled-components';
-import { Button, TextField } from "@mui/material";
+import { TextField } from "@mui/material";
 
 export const Container = styled.div`
 
 `;
 
 export const DivForm = styled.div`
+  margin: 80px 0;
 `;
 
-export const H1 = styled.h1`
-  margin-top: 60px;
+export const H1 = styled.h1`  
   margin-bottom: 30px;
+  font-family: 'Open Sans', sans-serif;
 `;
 
 export const TextBox = styled(TextField)`
@@ -40,7 +41,6 @@ export const DateContainer = styled.div`
   text-align: left;
 `;
 
-export const SignUpButton = styled(Button)`
-  padding: 10px;
-  margin-top: 60px;
+export const DivOptions = styled.div`
+  text-align: center;
 `;
