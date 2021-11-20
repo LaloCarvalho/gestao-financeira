@@ -15,6 +15,9 @@ import {
 import React, { useEffect, useState } from "react";
 import { SelectProps } from "../../types";
 import { Container, DivForm, TextBox } from "./styles";
+import MaleIcon from '@mui/icons-material/Male';
+import MaleOutlinedIcon from '@mui/icons-material/MaleOutlined';
+
 
 const SignUp: React.FC = () => {
   const [name, setName] = useState<string>("");
