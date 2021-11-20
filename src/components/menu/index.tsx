@@ -9,7 +9,7 @@ import {
   Navbar,
   NavDropdown,
 } from "react-bootstrap";
-import { A, Div, DivChildren, DivLogo, Footer, H5, Hr, Img } from "./styles";
+import { A, AFooter, Div, DivChildren, DivCopyright, DivLogo, Footer, H5, Hr, Img } from "./styles";
 
 const Menu: React.FC = ({ children }) => {
   return (
@@ -70,7 +70,7 @@ const Menu: React.FC = ({ children }) => {
                 Lorem ipsum
               </H5>
               Lorem ipsum dolor sit amet, <br />
-              Lorem ipsum dolor sit amet,
+              Lorem ipsum dolor sit amet
               <br />
               <br />
               +55 85 99999-9999
@@ -160,18 +160,12 @@ const Menu: React.FC = ({ children }) => {
         </div>
         <Hr />
         <Div className="row">
-          <div className="col-md-5">© 2021 Copyright: loreipsum.com</div>
-          <div className="col-md-1">
-            <A href="#!">Privacy</A>
-          </div>
-          <div className="col-md-1">
-            <A href="#!">Terms</A>
-          </div>
-          <div className="col-md-1">
-            <A href="#!">About</A>
-          </div>
-          <div className="col-md-1">
-            <A href="#!">Sitemap</A>
+          <DivCopyright className="col-md-4">© 2021 Copyright: Eduardo Diógenes</DivCopyright>
+          <div className="col-md-7">
+            <AFooter href="#!">Privacy</AFooter>
+            <AFooter href="#!">Terms</AFooter>
+            <AFooter href="#!">About</AFooter>
+            <AFooter href="#!">Sitemap</AFooter>
           </div>
         </Div>
       </Footer>

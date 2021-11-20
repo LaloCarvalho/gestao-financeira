@@ -1,7 +1,7 @@
 import React from "react";
 import { Container } from "./styles";
 
-const home: React.FC = () => {
+const Home: React.FC = () => {
   return (
       <Container>
         <h1 className="container-fluid text-center text-md-left">Home em contrução</h1>
@@ -9,4 +9,4 @@ const home: React.FC = () => {
   );
 };
 
-export default home;
+export default Home;
