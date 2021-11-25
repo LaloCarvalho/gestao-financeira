@@ -6,20 +6,22 @@ import twitterLogo from "./assets/twitter.png";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import {
   A,
-  AFooter,
   Div,
   DivChildren,
   DivCopyright,
   DivLogo,
   DivSocialMedias,
-  DivTermos,
   Footer,
   H5,
+  H5Logo,
   Hr,
   Img,
+  Li,
   navbar,
   navHover,
   navNormal,
+  PDescription,
+  Con,
 } from "./styles";
 
 const Menu: React.FC = ({ children }) => {
@@ -28,11 +30,14 @@ const Menu: React.FC = ({ children }) => {
   const [hoverContact, setHoverContact] = useState(false);
   const [hoverSignIn, setHoverSignIn] = useState(false);
   const [hoverSignUp, setHoverSignUp] = useState(false);
-
+  const [hoverPlans, setHoverPlans] = useState(false);
+  const [hoverProduct, setHoverProduct] = useState(false);
+  const [hoverContent, setHoverContent] = useState(false);
+  
   return (
     <>
-      <Navbar fixed="top" collapseOnSelect expand="lg" style={navbar}>
-        <Container>
+      <Navbar fixed="top" collapseOnSelect expand="lg" variant="dark" style={navbar}>
+        <Container style={Con}>
           <Navbar.Brand href="/">
             <img
               alt=""
@@ -44,7 +49,7 @@ const Menu: React.FC = ({ children }) => {
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="mx-auto ">
+            <Nav className="me-auto ">
               <Nav.Link
                 onMouseEnter={() => {
                   setHoverHome(true);
@@ -56,6 +61,42 @@ const Menu: React.FC = ({ children }) => {
                 href="/"
               >
                 Início
+              </Nav.Link>
+              <Nav.Link
+                onMouseEnter={() => {
+                  setHoverPlans(true);
+                }}
+                onMouseLeave={() => {
+                  setHoverPlans(false);
+                }}
+                style={hoverPlans ? navHover : navNormal}
+                href="/"
+              >
+                Planos
+              </Nav.Link>
+              <Nav.Link
+                onMouseEnter={() => {
+                  setHoverProduct(true);
+                }}
+                onMouseLeave={() => {
+                  setHoverProduct(false);
+                }}
+                style={hoverProduct ? navHover : navNormal}
+                href="/"
+              >
+                Produto
+              </Nav.Link>
+              <Nav.Link
+                onMouseEnter={() => {
+                  setHoverContent(true);
+                }}
+                onMouseLeave={() => {
+                  setHoverContent(false);
+                }}
+                style={hoverContent ? navHover : navNormal}
+                href="/"
+              >
+                Conteúdo
               </Nav.Link>
               <Nav.Link
                 onMouseEnter={() => {
@@ -117,61 +158,66 @@ const Menu: React.FC = ({ children }) => {
       <Footer className="page-footer font-small blue pt-4 " style={navbar}>
         <div className="container-fluid text-center text-md-left">
           <div className="row">
-            <DivLogo className="col-md-4">
-              <H5 className="text-uppercase">
+            <DivLogo className="col-md-3">
+              <H5Logo className="text-uppercase">
                 <img
                   alt=""
                   src={logo}
                   width="30"
-                  height="30"
                   className="d-inline-block align-top"
                 />
-                Lorem ipsum
-              </H5>
-              <p>
+                Entrada Direta
+              </H5Logo>
+              <PDescription>
                 Cuidar do seu dinheiro pode ser <br />
                 simples. Você organiza e planeja <br />
                 sua vida financeira em um <br />
                 único lugar.
-              </p>
+              </PDescription>
             </DivLogo>
             <div className="col-md-2">
               <H5 className="text-uppercase">Empresa</H5>
               <ul className="list-unstyled">
-                <li>
-                  <A href="#!">Sobre</A>
-                </li>
-                <li>
+              <Li>
                   <A href="#!">Direções</A>
-                </li>
+                </Li>
+                <Li>
+                  <A href="#!">Sobre</A>
+                </Li>                
+                <Li>
+                  <A href="#!">Política de Privacidade</A>
+                </Li>
+                <Li>
+                  <A href="#!">Termos de Uso</A>
+                </Li>
               </ul>
             </div>
             <div className="col-md-2">
               <H5 className="text-uppercase">Links Úteis</H5>
               <ul className="list-unstyled">
-                <li>
+                <Li>
                   <A href="#!">Ouvidoria</A>
-                </li>
-                <li>
+                </Li>
+                <Li>
                   <A href="#!">Planos</A>
-                </li>
-                <li>
+                </Li>
+                <Li>
                   <A href="#!">Blog</A>
-                </li>
+                </Li>
               </ul>
             </div>
             <div className="col-md-2">
               <H5 className="text-uppercase">Suporte</H5>
               <ul className="list-unstyled">
-                <li>
+                <Li>
                   <A href="#!">Entre em Contato</A>
-                </li>
-                <li>
+                </Li>
+                <Li>
                   <A href="#!">Minha Conta</A>
-                </li>
-                <li>
+                </Li>
+                <Li>
                   <A href="#!">Pagamentos</A>
-                </li>
+                </Li>
               </ul>
             </div>
 
@@ -180,15 +226,10 @@ const Menu: React.FC = ({ children }) => {
         </div>
         <Hr />
         <Div className="row">
-          <DivCopyright className="col-md-5">
+          <DivCopyright className="col-md-6">
             © 2021 Copyright: Eduardo Diógenes
           </DivCopyright>
-          <DivTermos className="col-md-4">
-            <AFooter href="#!">Política de Privacidade</AFooter>
-            <AFooter href="#!">Termos de Uso</AFooter>
-            <AFooter href="#!">Sobre</AFooter>
-          </DivTermos>
-          <DivSocialMedias className="col-md-2 ">
+          <DivSocialMedias className="col-md-5 ">
             <Img alt="" src={facebookLogo} width="30" height="30" />
             <Img alt="" src={instagramLogo} width="30" height="30" />
             <Img alt="" src={twitterLogo} width="30" height="30" />
