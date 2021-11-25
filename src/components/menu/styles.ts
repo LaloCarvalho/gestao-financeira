@@ -75,7 +75,7 @@ export const Img = styled.img`
   display: inline-block;
 `;
 
-export const DivTeste = styled.div`
+export const DivTermos = styled.div`
   text-align: left;
 `;
 
