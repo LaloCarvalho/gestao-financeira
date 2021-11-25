@@ -18,7 +18,7 @@ export const A = styled.a`
   text-decoration: none;  
 
   &:hover {
-    color: rgba(255,255,255,.75);
+    color: rgba(152, 93, 197, 1);
     cursor: pointer;
   }
 `;
@@ -29,7 +29,7 @@ export const AFooter = styled.a`
   padding-right: 6%;
 
   &:hover {
-    color: rgba(255,255,255,.75);
+    color: rgba(152, 93, 197, 1);
     cursor: pointer;
   }
 `;
@@ -73,10 +73,18 @@ export const Hr = styled.hr`
 export const Img = styled.img`
   margin-left: 2px;
   display: inline-block;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const DivTermos = styled.div`
   text-align: left;
 `;
+
+export const navbar = { backgroundColor: "#200733" };
+export const navNormal = { color: "#ccc" };
+export const navHover = { color: "#985dc5" };
 
 

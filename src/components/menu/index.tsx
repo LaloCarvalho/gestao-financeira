@@ -3,7 +3,7 @@ import logo from "./assets/logo.png";
 import facebookLogo from "./assets/facebook.png";
 import instagramLogo from "./assets/instagram.png";
 import twitterLogo from "./assets/twitter.png";
-import { Col, Container, Nav, Navbar, Row } from "react-bootstrap";
+import { Container, Nav, Navbar } from "react-bootstrap";
 import {
   A,
   AFooter,
@@ -17,28 +17,23 @@ import {
   H5,
   Hr,
   Img,
+  navbar,
+  navHover,
+  navNormal,
 } from "./styles";
-const navbar = { backgroundColor: "#200733" };
-const nav = { color: "#ccc" };
-const nav2 = { color: "#985dc5" };
-const teste = style({
-  transition: 'color .2s',
-  color: 'blue',
-  $nest: {
-    '&:hover': {
-      color: 'red'
-    }
-  }
-});
 
 const Menu: React.FC = ({ children }) => {
-  const [hover, setHover] = useState(false);
+  const [hoverHome, setHoverHome] = useState(false);
+  const [hoverAbout, setHoverAbout] = useState(false);
+  const [hoverContact, setHoverContact] = useState(false);
+  const [hoverSignIn, setHoverSignIn] = useState(false);
+  const [hoverSignUp, setHoverSignUp] = useState(false);
 
   return (
     <>
       <Navbar fixed="top" collapseOnSelect expand="lg" style={navbar}>
         <Container>
-          <Navbar.Brand style={nav} href="/">
+          <Navbar.Brand href="/">
             <img
               alt=""
               src={logo}
@@ -52,36 +47,36 @@ const Menu: React.FC = ({ children }) => {
             <Nav className="mx-auto ">
               <Nav.Link
                 onMouseEnter={() => {
-                  setHover(true);
+                  setHoverHome(true);
                 }}
                 onMouseLeave={() => {
-                  setHover(false);
+                  setHoverHome(false);
                 }}
-                style={hover ? nav2 : nav}
+                style={hoverHome ? navHover : navNormal}
                 href="/"
               >
                 Início
               </Nav.Link>
               <Nav.Link
                 onMouseEnter={() => {
-                  setHover(true);
+                  setHoverContact(true);
                 }}
                 onMouseLeave={() => {
-                  setHover(false);
+                  setHoverContact(false);
                 }}
-                style={hover ? nav2 : nav}
+                style={hoverContact ? navHover : navNormal}
                 href="/contact"
               >
                 Contato
               </Nav.Link>
               <Nav.Link
                 onMouseEnter={() => {
-                  setHover(true);
+                  setHoverAbout(true);
                 }}
                 onMouseLeave={() => {
-                  setHover(false);
+                  setHoverAbout(false);
                 }}
-                style={hover ? nav2 : nav}
+                style={hoverAbout ? navHover : navNormal}
                 href="/about"
               >
                 Sobre
@@ -90,24 +85,24 @@ const Menu: React.FC = ({ children }) => {
             <Nav>
               <Nav.Link
                 onMouseEnter={() => {
-                  setHover(true);
+                  setHoverSignUp(true);
                 }}
                 onMouseLeave={() => {
-                  setHover(false);
+                  setHoverSignUp(false);
                 }}
-                style={hover ? nav2 : nav}
+                style={hoverSignUp ? navHover : navNormal}
                 href="/signUp"
               >
                 Cadastrar
               </Nav.Link>
               <Nav.Link
                 onMouseEnter={() => {
-                  setHover(true);
+                  setHoverSignIn(true);
                 }}
                 onMouseLeave={() => {
-                  setHover(false);
+                  setHoverSignIn(false);
                 }}
-                style={hover ? nav2 : nav}
+                style={hoverSignIn ? navHover : navNormal}
                 href="/signIn"
               >
                 Entrar
@@ -130,7 +125,7 @@ const Menu: React.FC = ({ children }) => {
                   width="30"
                   height="30"
                   className="d-inline-block align-top"
-                />{" "}
+                />
                 Lorem ipsum
               </H5>
               <p>
