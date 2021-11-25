@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import Button from "../../components/button";
 import TextBox from "../../components/textBox";
@@ -9,9 +9,7 @@ const SignIn: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
-  const handleClick = (event: React.MouseEvent<HTMLElement>, text: string) => {
-    console.log(text);
-  };
+  
 
   return (
     <Container>
@@ -33,7 +31,7 @@ const SignIn: React.FC = () => {
               label="Senha"
             >
             </PasswordBox><br/>
-            <Button onClick={(e: any) => { handleClick(e, "clicked"); }}>
+            <Button onClick={() => { console.log("alow"); }}>
               Login
             </Button>
           </DivForm>

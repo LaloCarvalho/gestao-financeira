@@ -1,172 +1,239 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "./assets/logo.png";
 import facebookLogo from "./assets/facebook.png";
 import instagramLogo from "./assets/instagram.png";
 import twitterLogo from "./assets/twitter.png";
+import { Container, Nav, Navbar } from "react-bootstrap";
 import {
-  Container,
-  Nav,
-  Navbar,
-  NavDropdown,
-} from "react-bootstrap";
-import { A, AFooter, Div, DivChildren, DivCopyright, DivLogo, Footer, H5, Hr, Img } from "./styles";
+  A,
+  Div,
+  DivChildren,
+  DivCopyright,
+  DivLogo,
+  DivSocialMedias,
+  Footer,
+  H5,
+  H5Logo,
+  Hr,
+  Img,
+  Li,
+  navbar,
+  navHover,
+  navNormal,
+  PDescription,
+  Con,
+} from "./styles";
 
 const Menu: React.FC = ({ children }) => {
+  const [hoverHome, setHoverHome] = useState(false);
+  const [hoverAbout, setHoverAbout] = useState(false);
+  const [hoverContact, setHoverContact] = useState(false);
+  const [hoverSignIn, setHoverSignIn] = useState(false);
+  const [hoverSignUp, setHoverSignUp] = useState(false);
+  const [hoverPlans, setHoverPlans] = useState(false);
+  const [hoverProduct, setHoverProduct] = useState(false);
+  const [hoverContent, setHoverContent] = useState(false);
+  
   return (
     <>
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-        <Container>
+      <Navbar fixed="top" collapseOnSelect expand="lg" variant="dark" style={navbar}>
+        <Container style={Con}>
           <Navbar.Brand href="/">
             <img
               alt=""
               src={logo}
-              width="30"
-              height="30"
+              width="50"
+              height="50"
               className="d-inline-block align-top"
-            />{" "}
-            Lorem ipsum
+            />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="me-auto">              
-              <Nav.Link href="#pricing">Transações</Nav.Link>
-              <NavDropdown title="Cartões de Crédito" id="collasible-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
-                  Another action
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">
-                  Something
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">
-                  Separated link
-                </NavDropdown.Item>
-              </NavDropdown>
-              <Nav.Link href="#">Contas</Nav.Link>
-              <Nav.Link href="#1">Relatórios</Nav.Link>
-              <Nav.Link href="#features">Dashboard</Nav.Link>
+            <Nav className="me-auto ">
+              <Nav.Link
+                onMouseEnter={() => {
+                  setHoverHome(true);
+                }}
+                onMouseLeave={() => {
+                  setHoverHome(false);
+                }}
+                style={hoverHome ? navHover : navNormal}
+                href="/"
+              >
+                Início
+              </Nav.Link>
+              <Nav.Link
+                onMouseEnter={() => {
+                  setHoverPlans(true);
+                }}
+                onMouseLeave={() => {
+                  setHoverPlans(false);
+                }}
+                style={hoverPlans ? navHover : navNormal}
+                href="/"
+              >
+                Planos
+              </Nav.Link>
+              <Nav.Link
+                onMouseEnter={() => {
+                  setHoverProduct(true);
+                }}
+                onMouseLeave={() => {
+                  setHoverProduct(false);
+                }}
+                style={hoverProduct ? navHover : navNormal}
+                href="/"
+              >
+                Produto
+              </Nav.Link>
+              <Nav.Link
+                onMouseEnter={() => {
+                  setHoverContent(true);
+                }}
+                onMouseLeave={() => {
+                  setHoverContent(false);
+                }}
+                style={hoverContent ? navHover : navNormal}
+                href="/"
+              >
+                Conteúdo
+              </Nav.Link>
+              <Nav.Link
+                onMouseEnter={() => {
+                  setHoverContact(true);
+                }}
+                onMouseLeave={() => {
+                  setHoverContact(false);
+                }}
+                style={hoverContact ? navHover : navNormal}
+                href="/contact"
+              >
+                Contato
+              </Nav.Link>
+              <Nav.Link
+                onMouseEnter={() => {
+                  setHoverAbout(true);
+                }}
+                onMouseLeave={() => {
+                  setHoverAbout(false);
+                }}
+                style={hoverAbout ? navHover : navNormal}
+                href="/about"
+              >
+                Sobre
+              </Nav.Link>
             </Nav>
             <Nav>
-              <Nav.Link href="/signUp">Cadastrar</Nav.Link>
-              <Nav.Link href="/signIn">Entrar</Nav.Link>
+              <Nav.Link
+                onMouseEnter={() => {
+                  setHoverSignUp(true);
+                }}
+                onMouseLeave={() => {
+                  setHoverSignUp(false);
+                }}
+                style={hoverSignUp ? navHover : navNormal}
+                href="/signUp"
+              >
+                Cadastrar
+              </Nav.Link>
+              <Nav.Link
+                onMouseEnter={() => {
+                  setHoverSignIn(true);
+                }}
+                onMouseLeave={() => {
+                  setHoverSignIn(false);
+                }}
+                style={hoverSignIn ? navHover : navNormal}
+                href="/signIn"
+              >
+                Entrar
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
+
       <DivChildren>{children}</DivChildren>
-      <Footer className="page-footer font-small blue pt-4 bg-dark">
+
+      <Footer className="page-footer font-small blue pt-4 " style={navbar}>
         <div className="container-fluid text-center text-md-left">
           <div className="row">
             <DivLogo className="col-md-3">
-              <H5 className="text-uppercase">
+              <H5Logo className="text-uppercase">
                 <img
                   alt=""
                   src={logo}
                   width="30"
-                  height="30"
                   className="d-inline-block align-top"
-                />{" "}
-                Lorem ipsum
-              </H5>
-              Lorem ipsum dolor sit amet, <br />
-              Lorem ipsum dolor sit amet
-              <br />
-              <br />
-              +55 85 99999-9999
-              <br />
-              LoremIpsum@gmail.com
+                />
+                Entrada Direta
+              </H5Logo>
+              <PDescription>
+                Cuidar do seu dinheiro pode ser <br />
+                simples. Você organiza e planeja <br />
+                sua vida financeira em um <br />
+                único lugar.
+              </PDescription>
             </DivLogo>
             <div className="col-md-2">
-              <H5 className="text-uppercase">Lorem ipsum</H5>
+              <H5 className="text-uppercase">Empresa</H5>
               <ul className="list-unstyled">
-                <li>
-                  <A href="#!">Link 1</A>
-                </li>
-                <li>
-                  <A href="#!">Link 2</A>
-                </li>
-                <li>
-                  <A href="#!">Link 3</A>
-                </li>
-                <li>
-                  <A href="#!">Link 4</A>
-                </li>
+              <Li>
+                  <A href="#!">Direções</A>
+                </Li>
+                <Li>
+                  <A href="#!">Sobre</A>
+                </Li>                
+                <Li>
+                  <A href="#!">Política de Privacidade</A>
+                </Li>
+                <Li>
+                  <A href="#!">Termos de Uso</A>
+                </Li>
               </ul>
             </div>
             <div className="col-md-2">
-              <H5 className="text-uppercase">Lorem ipsum</H5>
+              <H5 className="text-uppercase">Links Úteis</H5>
               <ul className="list-unstyled">
-                <li>
-                  <A href="#!">Link 1</A>
-                </li>
-                <li>
-                  <A href="#!">Link 2</A>
-                </li>
-                <li>
-                  <A href="#!">Link 3</A>
-                </li>
-                <li>
-                  <A href="#!">Link 4</A>
-                </li>
+                <Li>
+                  <A href="#!">Ouvidoria</A>
+                </Li>
+                <Li>
+                  <A href="#!">Planos</A>
+                </Li>
+                <Li>
+                  <A href="#!">Blog</A>
+                </Li>
               </ul>
             </div>
             <div className="col-md-2">
-              <H5 className="text-uppercase">Lorem ipsum</H5>
+              <H5 className="text-uppercase">Suporte</H5>
               <ul className="list-unstyled">
-                <li>
-                  <A href="#!">Link 1</A>
-                </li>
-                <li>
-                  <A href="#!">Link 2</A>
-                </li>
-                <li>
-                  <A href="#!">Link 3</A>
-                </li>
-                <li>
-                  <A href="#!">Link 4</A>
-                </li>
+                <Li>
+                  <A href="#!">Entre em Contato</A>
+                </Li>
+                <Li>
+                  <A href="#!">Minha Conta</A>
+                </Li>
+                <Li>
+                  <A href="#!">Pagamentos</A>
+                </Li>
               </ul>
             </div>
-            <div className="col-md-3">
-            <H5 className="text-uppercase">Siga Lore Ipsum</H5>            
-            <A href="#!">
-              <Img
-                alt=""
-                src={facebookLogo}
-                width="30"
-                height="30"
-              />{" "}
-            </A>
-            <A href="#!">
-              <Img
-                alt=""
-                src={instagramLogo}
-                width="30"
-                height="30"
-              />{" "}
-            </A>
-            <A href="#!">
-              <Img
-                alt=""
-                src={twitterLogo}
-                width="30"
-                height="30"
-              />{" "}
-            </A>
-            </div>
+
             <hr className="clearfix w-100 d-md-none pb-0" />
           </div>
         </div>
         <Hr />
         <Div className="row">
-          <DivCopyright className="col-md-4">© 2021 Copyright: Eduardo Diógenes</DivCopyright>
-          <div className="col-md-7">
-            <AFooter href="#!">Privacy</AFooter>
-            <AFooter href="#!">Terms</AFooter>
-            <AFooter href="#!">About</AFooter>
-            <AFooter href="#!">Sitemap</AFooter>
-          </div>
+          <DivCopyright className="col-md-6">
+            © 2021 Copyright: Eduardo Diógenes
+          </DivCopyright>
+          <DivSocialMedias className="col-md-5 ">
+            <Img alt="" src={facebookLogo} width="30" height="30" />
+            <Img alt="" src={instagramLogo} width="30" height="30" />
+            <Img alt="" src={twitterLogo} width="30" height="30" />
+          </DivSocialMedias>
         </Div>
       </Footer>
     </>
