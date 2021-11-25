@@ -6,7 +6,7 @@ export const Container = styled.div`
 `;
 
 export const DivForm = styled.div`
-  margin: 80px 0;
+  margin: 130px 0;
 `;
 
 export const H1 = styled.h1`  
