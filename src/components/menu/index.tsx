@@ -3,18 +3,16 @@ import logo from "./assets/logo.png";
 import facebookLogo from "./assets/facebook.png";
 import instagramLogo from "./assets/instagram.png";
 import twitterLogo from "./assets/twitter.png";
+import youtubeLogo from "./assets/youtube.png";
 import { Container, Nav, Navbar } from "react-bootstrap";
 import {
   A,
-  Div,
   DivChildren,
   DivCopyright,
   DivLogo,
   DivSocialMedias,
   Footer,
-  H5,
   H5Logo,
-  Hr,
   Img,
   Li,
   navbar,
@@ -22,6 +20,8 @@ import {
   navNormal,
   PDescription,
   Con,
+  Ul,
+  ImgFooter,
 } from "./styles";
 
 const Menu: React.FC = ({ children }) => {
@@ -155,86 +155,41 @@ const Menu: React.FC = ({ children }) => {
 
       <DivChildren>{children}</DivChildren>
 
-      <Footer className="page-footer font-small blue pt-4 " style={navbar}>
-        <div className="container-fluid text-center text-md-left">
-          <div className="row">
-            <DivLogo className="col-md-3">
-              <H5Logo className="text-uppercase">
-                <img
-                  alt=""
-                  src={logo}
-                  width="30"
-                  className="d-inline-block align-top"
-                />
-                Entrada Direta
-              </H5Logo>
-              <PDescription>
-                Cuidar do seu dinheiro pode ser <br />
-                simples. Você organiza e planeja <br />
-                sua vida financeira em um <br />
-                único lugar.
-              </PDescription>
-            </DivLogo>
-            <div className="col-md-2">
-              <H5 className="text-uppercase">Empresa</H5>
-              <ul className="list-unstyled">
-              <Li>
-                  <A href="#!">Direções</A>
-                </Li>
-                <Li>
-                  <A href="#!">Sobre</A>
-                </Li>                
-                <Li>
-                  <A href="#!">Política de Privacidade</A>
-                </Li>
-                <Li>
-                  <A href="#!">Termos de Uso</A>
-                </Li>
-              </ul>
-            </div>
-            <div className="col-md-2">
-              <H5 className="text-uppercase">Links Úteis</H5>
-              <ul className="list-unstyled">
-                <Li>
-                  <A href="#!">Ouvidoria</A>
-                </Li>
-                <Li>
-                  <A href="#!">Planos</A>
-                </Li>
-                <Li>
-                  <A href="#!">Blog</A>
-                </Li>
-              </ul>
-            </div>
-            <div className="col-md-2">
-              <H5 className="text-uppercase">Suporte</H5>
-              <ul className="list-unstyled">
-                <Li>
-                  <A href="#!">Entre em Contato</A>
-                </Li>
-                <Li>
-                  <A href="#!">Minha Conta</A>
-                </Li>
-                <Li>
-                  <A href="#!">Pagamentos</A>
-                </Li>
-              </ul>
-            </div>
-
-            <hr className="clearfix w-100 d-md-none pb-0" />
-          </div>
-        </div>
-        <Hr />
-        <Div className="row">
-          <DivCopyright className="col-md-6">
-            © 2021 Copyright: Eduardo Diógenes
-          </DivCopyright>
-          <DivSocialMedias className="col-md-5 ">
-            <Img alt="" src={facebookLogo} width="30" height="30" />
-            <Img alt="" src={instagramLogo} width="30" height="30" />
-            <Img alt="" src={twitterLogo} width="30" height="30" />
-          </DivSocialMedias>
-        </Div>
+      <Footer style={navbar}>
+        <DivLogo >
+          <H5Logo >
+            <ImgFooter alt="" src={logo}/>
+            &nbsp;Entrada Direta
+          </H5Logo>
+          <PDescription>
+            Cuidar do seu dinheiro pode ser simples. <br />
+            Você organiza e planeja sua vida financeira em um 
+            único lugar.
+          </PDescription>
+        </DivLogo>
+        <Ul>
+          <Li>
+            <A href="#!">Termos de Uso</A>
+          </Li>
+          <Li>
+            <A href="#!">Entre em Contato</A>
+          </Li>                
+          <Li>
+            <A href="#!">Política de Privacidade</A>
+          </Li>
+          <Li>
+            <A href="#!">Mapa do Site</A>
+          </Li>
+        </Ul>
+        <DivCopyright>
+          © 2021 Copyright: Eduardo Diógenes
+        </DivCopyright>
+        <DivSocialMedias>
+          <Img alt="" src={facebookLogo}/>
+          <Img alt="" src={instagramLogo}/>
+          <Img alt="" src={twitterLogo}/>
+          <Img alt="" src={youtubeLogo}/>
+        </DivSocialMedias>
       </Footer>
     </>
   );
