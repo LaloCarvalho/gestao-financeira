@@ -3,10 +3,16 @@ import styled from 'styled-components';
 export const Container = styled.div`  
 `;
 
+export const DivFirstBlock = styled.div`
+@media only screen and (max-width: 768px) {
+  padding-top: 50px; 
+  }  
+  text-align: center;
+`;
+
 export const ImgCarousel = styled.img`
   margin-top: 50px;
-  width: 100%;
-  text-align: center;
+  width: 70%;
   max-height: 550px;
 `;
 
@@ -20,6 +26,9 @@ export const Img = styled.img`
 `;
 
 export const DivSecondBlock = styled.div`
+@media only screen and (max-width: 768px) {    
+  padding-top: 0;
+  } 
   padding-top: 80px;
   padding-bottom: 80px;
 `;
@@ -45,9 +54,10 @@ export const H2 = styled.h2`
 export const P = styled.p`
   font-family: 'Open Sans', sans-serif;
   font-size: 17px;
+  padding-bottom: 30px;
 `;
 
-export const ThirdSection = styled.div`
+export const GrayBackground = styled.div`
   background-color: #efefef;
 `;
 
@@ -60,6 +70,9 @@ export const DivTextThirdBlock = styled.div`
 `;
 
 export const DivFourthBlock = styled.div`
+@media only screen and (max-width: 768px) {
+  flex-direction: column-reverse;
+  }
   padding-top: 80px; 
 `;
 

@@ -4,6 +4,7 @@ import { SelectProps } from "../../types";
 import SignUpButton from "../../components/button";
 import TextBox from "../../components/textBox";
 import PasswordBox from "../../components/passwordBox";
+import * as S from "./styles";
 import {
   Checkbox,
   FormControl,
@@ -15,14 +16,6 @@ import {
   Select,
   ThemeProvider,
 } from "@mui/material";
-
-import {
-  Container,
-  DateContainer,
-  DivOptions,
-  GenderContainer,
-  H1,
-} from "./styles";
 
 const SignUp: React.FC = () => {
   const [name, setName] = useState<string>("");
@@ -67,121 +60,125 @@ const SignUp: React.FC = () => {
   };
 
   return (
-    <Container>
-      <H1>Cadastre-se</H1>
-      <TextBox
-        width={440}
-        id="outlined-basic-name"
-        label="Nome"
-        onChange={(event: any) => setName(event.target.value)}
-      ></TextBox>
-      <br />
-      <GenderContainer>
-        <FormLabel component="legend">Gênero</FormLabel>
-        <DivOptions>
-          <FormControlLabel
-            value="1"
-            control={
-              <Checkbox
-                onChange={() => setGenderChecked(1)}
-                sx={{
-                  color: "#ccc",
-                  "&.Mui-checked": {
-                    color: "#662275",
-                  },
-                }}
-              />
-            }
-            label="Masculino"
-            labelPlacement="end"
-            checked={genderChecked === 1}
-          />
-          <FormControlLabel
-            value="2"
-            control={
-              <Checkbox
-                onChange={() => setGenderChecked(2)}
-                sx={{
-                  color: "#ccc",
-                  "&.Mui-checked": {
-                    color: "#662275",
-                  },
-                }}
-              />
-            }
-            label="Feminino"
-            labelPlacement="end"
-            checked={genderChecked === 2}
-          />
-        </DivOptions>
-      </GenderContainer>
-      <br />
-      <ThemeProvider theme={theme}>
-        <DateContainer>
-          <FormLabel component="legend">Data de Nascimento</FormLabel>
+    <S.Container className="container">
+      <div className="row text-center">
+        <div className="col-lg-12 col-md-12">
+          <S.H1>Cadastre-se</S.H1>
           <TextBox
-            width={90}
-            id="outlined-basic-day"
-            label="Dia"
-            onChange={(event: any) => setDay(event.target.value)}
-            inputProps={2}
+            width={350}
+            id="outlined-basic-name"
+            label="Nome"
+            onChange={(event: any) => setName(event.target.value)}
           ></TextBox>
-          <FormControl sx={{ m: 1, width: 150 }}>
-            <InputLabel>Mês</InputLabel>
-            <Select
-              onChange={(event: any) => {
-                setMonth(event.target.value);
-              }}
-              input={<OutlinedInput label="Mês" />}
-              defaultValue={""}
-            >
-              {months.map((month) => (
-                <MenuItem key={month.value} value={month.value}>
-                  {month.label}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
+          <br />
+          <S.GenderContainer>
+            <FormLabel component="legend">Gênero</FormLabel>
+            <S.DivOptions>
+              <FormControlLabel
+                value="1"
+                control={
+                  <Checkbox
+                    onChange={() => setGenderChecked(1)}
+                    sx={{
+                      color: "#ccc",
+                      "&.Mui-checked": {
+                        color: "#662275",
+                      },
+                    }}
+                  />
+                }
+                label="Masculino"
+                labelPlacement="end"
+                checked={genderChecked === 1}
+              />
+              <FormControlLabel
+                value="2"
+                control={
+                  <Checkbox
+                    onChange={() => setGenderChecked(2)}
+                    sx={{
+                      color: "#ccc",
+                      "&.Mui-checked": {
+                        color: "#662275",
+                      },
+                    }}
+                  />
+                }
+                label="Feminino"
+                labelPlacement="end"
+                checked={genderChecked === 2}
+              />
+            </S.DivOptions>
+          </S.GenderContainer>
+          <br />
+          <ThemeProvider theme={theme}>
+            <S.DateContainer>
+              <FormLabel component="legend">Data de Nascimento</FormLabel>
+              <TextBox
+                width={55}
+                id="outlined-basic-day"
+                label="Dia"
+                onChange={(event: any) => setDay(event.target.value)}
+                inputProps={2}
+              ></TextBox>
+              <FormControl sx={{ m: 1, width: 130 }}>
+                <InputLabel>Mês</InputLabel>
+                <Select
+                  onChange={(event: any) => {
+                    setMonth(event.target.value);
+                  }}
+                  input={<OutlinedInput label="Mês" />}
+                  defaultValue={""}
+                >
+                  {months.map((month) => (
+                    <MenuItem key={month.value} value={month.value}>
+                      {month.label}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+              <TextBox
+                width={85}
+                id="outlined-basic-year"
+                label="Ano"
+                onChange={(event: any) => setYear(event.target.value)}
+                inputProps={4}
+              ></TextBox>
+            </S.DateContainer>
+          </ThemeProvider>
+          <br />
           <TextBox
-            width={120}
-            id="outlined-basic-year"
-            label="Ano"
-            onChange={(event: any) => setYear(event.target.value)}
-            inputProps={4}
+            width={350}
+            id="outlined-basic-email"
+            label="Email"
+            onChange={(event: any) => setEmail(event.target.value)}
           ></TextBox>
-        </DateContainer>
-      </ThemeProvider>
-      <br />
-      <TextBox
-        width={440}
-        id="outlined-basic-email"
-        label="Email"
-        onChange={(event: any) => setEmail(event.target.value)}
-      ></TextBox>
-      <br />
-      <TextBox
-        width={440}
-        id="outlined-basic-confirm-email"
-        label="Confirme o Email"
-        onChange={(event: any) => setConfirmEmail(event.target.value)}
-      ></TextBox>
-      <br />
-      <PasswordBox
-        id="outlined-basic-password"
-        onChange={(event: any) => setPassword(event.target.value)}
-        label="Senha"
-      ></PasswordBox>
-      <br />
-      <PasswordBox
-        id="outlined-basic-password-confirmation"
-        onChange={(event: any) => setConfirmPassword(event.target.value)}
-        label="Confirme a Senha"
-      ></PasswordBox>
-      <br />
-      <SignUpButton onClick={(e) => handleClick(e, "clicked")}>
-        Cadastrar
-      </SignUpButton>
-    </Container>
+          <br />
+          <TextBox
+            width={350}
+            id="outlined-basic-confirm-email"
+            label="Confirme o Email"
+            onChange={(event: any) => setConfirmEmail(event.target.value)}
+          ></TextBox>
+          <br />
+          <PasswordBox
+            id="outlined-basic-password"
+            onChange={(event: any) => setPassword(event.target.value)}
+            label="Senha"
+          ></PasswordBox>
+          <br />
+          <PasswordBox
+            id="outlined-basic-password-confirmation"
+            onChange={(event: any) => setConfirmPassword(event.target.value)}
+            label="Confirme a Senha"
+          ></PasswordBox>
+          <br />
+          <SignUpButton onClick={(e) => handleClick(e, "clicked")}>
+            Cadastrar
+          </SignUpButton>
+        </div>
+      </div>
+    </S.Container>
   );
 };
 

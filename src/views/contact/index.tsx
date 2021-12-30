@@ -1,11 +1,67 @@
-import React from 'react';
-import { Container } from './styles';
+import {
+  createTheme,
+  FormControl,
+  TextField,
+  ThemeProvider,
+} from "@mui/material";
+import React, { useState } from "react";
+import TextBox from "../../components/textBox";
+import * as S from "./styles";
+import Button from "../../components/button";
 
 const Contact: React.FC = () => {
+  const [email, setEmail] = useState<string>("");
+  const [subject, setSubject] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
+
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: "#662275",
+      },
+    },
+  });
+
   return (
-      <Container>
-        <h1 className="container-fluid text-center text-md-left">Contato em construção</h1>
-      </Container>
+    <S.Container className="container">
+      <div className="row text-center">
+        <div className="col-lg-12 col-md-12">
+          <S.H1>Enviar uma solicitação</S.H1>
+          <TextBox
+            width={350}
+            id="outlined-basic-name"
+            label="Email"
+            onChange={(event: any) => setEmail(event.target.value)}
+          ></TextBox>
+          <br />
+          <TextBox
+            width={350}
+            id="outlined-basic-name"
+            label="Assunto"
+            onChange={(event: any) => setSubject(event.target.value)}
+          ></TextBox>
+          <br />
+          <FormControl sx={{ m: 1, width: 350 }}>
+            <ThemeProvider theme={theme}>
+              <TextField
+                id="outlined-textarea"
+                label="Descrição"
+                multiline
+                rows={5}
+                onChange={(event: any) => setDescription(event.target.value)}
+              />
+            </ThemeProvider>
+          </FormControl><br/>
+          <Button
+            onClick={() => {
+              console.log("alow");
+            }}
+          >
+            Enviar
+          </Button>
+        </div>
+      </div>
+    </S.Container>
   );
 };
 

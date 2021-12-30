@@ -22,6 +22,7 @@ import {
   Con,
   Ul,
   ImgFooter,
+  DivList,
 } from "./styles";
 
 const Menu: React.FC = ({ children }) => {
@@ -33,10 +34,16 @@ const Menu: React.FC = ({ children }) => {
   const [hoverPlans, setHoverPlans] = useState(false);
   const [hoverProduct, setHoverProduct] = useState(false);
   const [hoverContent, setHoverContent] = useState(false);
-  
+
   return (
     <>
-      <Navbar fixed="top" collapseOnSelect expand="lg" variant="dark" style={navbar}>
+      <Navbar
+        fixed="top"
+        collapseOnSelect
+        expand="lg"
+        variant="dark"
+        style={navbar}
+      >
         <Container style={Con}>
           <Navbar.Brand href="/">
             <img
@@ -64,42 +71,6 @@ const Menu: React.FC = ({ children }) => {
               </Nav.Link>
               <Nav.Link
                 onMouseEnter={() => {
-                  setHoverPlans(true);
-                }}
-                onMouseLeave={() => {
-                  setHoverPlans(false);
-                }}
-                style={hoverPlans ? navHover : navNormal}
-                href="/"
-              >
-                Planos
-              </Nav.Link>
-              <Nav.Link
-                onMouseEnter={() => {
-                  setHoverProduct(true);
-                }}
-                onMouseLeave={() => {
-                  setHoverProduct(false);
-                }}
-                style={hoverProduct ? navHover : navNormal}
-                href="/"
-              >
-                Produto
-              </Nav.Link>
-              <Nav.Link
-                onMouseEnter={() => {
-                  setHoverContent(true);
-                }}
-                onMouseLeave={() => {
-                  setHoverContent(false);
-                }}
-                style={hoverContent ? navHover : navNormal}
-                href="/"
-              >
-                Conteúdo
-              </Nav.Link>
-              <Nav.Link
-                onMouseEnter={() => {
                   setHoverContact(true);
                 }}
                 onMouseLeave={() => {
@@ -109,18 +80,6 @@ const Menu: React.FC = ({ children }) => {
                 href="/contact"
               >
                 Contato
-              </Nav.Link>
-              <Nav.Link
-                onMouseEnter={() => {
-                  setHoverAbout(true);
-                }}
-                onMouseLeave={() => {
-                  setHoverAbout(false);
-                }}
-                style={hoverAbout ? navHover : navNormal}
-                href="/about"
-              >
-                Sobre
               </Nav.Link>
             </Nav>
             <Nav>
@@ -156,39 +115,40 @@ const Menu: React.FC = ({ children }) => {
       <DivChildren>{children}</DivChildren>
 
       <Footer style={navbar}>
-        <DivLogo >
-          <H5Logo >
-            <ImgFooter alt="" src={logo}/>
+        <DivLogo>
+          <H5Logo>
+            <ImgFooter alt="" src={logo} />
             &nbsp;Entrada Direta
           </H5Logo>
           <PDescription>
             Cuidar do seu dinheiro pode ser simples. <br />
-            Você organiza e planeja sua vida financeira em um 
-            único lugar.
+            Você organiza e planeja sua vida financeira em um único lugar.
           </PDescription>
         </DivLogo>
-        <Ul>
-          <Li>
-            <A href="#!">Termos de Uso</A>
-          </Li>
-          <Li>
-            <A href="#!">Entre em Contato</A>
-          </Li>                
-          <Li>
-            <A href="#!">Política de Privacidade</A>
-          </Li>
-          <Li>
-            <A href="#!">Mapa do Site</A>
-          </Li>
-        </Ul>
-        <DivCopyright>
-          © 2021 Copyright: Eduardo Diógenes
-        </DivCopyright>
+        <div className="container text-center">
+          <DivList className="row">
+            <Ul className="col-lg-12 col-md-12">
+              <Li>
+                <A href="#!">Termos de Uso</A>
+              </Li>
+              <Li>
+                <A href="#!">Entre em Contato</A>
+              </Li>
+              <Li>
+                <A href="#!">Política de Privacidade</A>
+              </Li>
+              <Li>
+                <A href="#!">Mapa do Site</A>
+              </Li>
+            </Ul>
+          </DivList>
+        </div>
+        <DivCopyright>© 2021 Copyright: Eduardo Diógenes</DivCopyright>
         <DivSocialMedias>
-          <Img alt="" src={facebookLogo}/>
-          <Img alt="" src={instagramLogo}/>
-          <Img alt="" src={twitterLogo}/>
-          <Img alt="" src={youtubeLogo}/>
+          <Img alt="" src={facebookLogo} />
+          <Img alt="" src={instagramLogo} />
+          <Img alt="" src={twitterLogo} />
+          <Img alt="" src={youtubeLogo} />
         </DivSocialMedias>
       </Footer>
     </>

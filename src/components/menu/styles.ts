@@ -87,13 +87,16 @@ export const Img = styled.img`
 export const PDescription = styled.p`
 `;
 
+export const DivList = styled.div`
+`;
+
 export const Ul = styled.ul`
-  text-align: center;
 `;
 
 export const Li = styled.li`
   display: inline;
-  padding-left: 30px;
+  padding-left: 15px;
+  padding-right: 15px;
 `;
 
 export const navbar = { backgroundColor: "#200733"};

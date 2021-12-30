@@ -15,20 +15,26 @@ import check from "./assets/check.png";
 const Home: React.FC = () => {
   return (
     <>
-      <Carousel fade>
-        <Carousel.Item interval={2000}>
-          <S.ImgCarousel src={carousel1} alt="First slide" />
-          <Carousel.Caption></Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item interval={2000}>
-          <S.ImgCarousel src={carousel2} alt="Second slide" />
-          <Carousel.Caption></Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item interval={2000}>
-          <S.ImgCarousel src={carousel3} alt="Third slide" />
-          <Carousel.Caption></Carousel.Caption>
-        </Carousel.Item>
-      </Carousel>
+      <S.GrayBackground>
+        <S.DivFirstBlock className="container-fluid">
+          <div className="row">
+            <Carousel fade className="col-lg-12 col-md-12 carousel-dark">
+              <Carousel.Item interval={2000}>
+                <S.ImgCarousel src={carousel1} alt="First slide" />
+                <Carousel.Caption></Carousel.Caption>
+              </Carousel.Item>
+              <Carousel.Item interval={2000}>
+                <S.ImgCarousel src={carousel2} alt="Second slide" />
+                <Carousel.Caption></Carousel.Caption>
+              </Carousel.Item>
+              <Carousel.Item interval={2000}>
+                <S.ImgCarousel src={carousel3} alt="Third slide" />
+                <Carousel.Caption></Carousel.Caption>
+              </Carousel.Item>
+            </Carousel>
+          </div>
+        </S.DivFirstBlock>
+      </S.GrayBackground>
 
       <div className="container">
         <S.DivSecondBlock className="row">
@@ -64,14 +70,12 @@ const Home: React.FC = () => {
         </S.DivSecondBlock>
       </div>
 
-      <S.ThirdSection>
+      <S.GrayBackground>
         <div className="container">
           <S.DivThirdBlock className="row">
             <S.DivTextThirdBlock className="row col-lg-12 col-md-12">
               <S.Item className="col-lg-4 col-md-6">
-                <S.H2>
-                  <S.ImgLi src={planejamento} alt="App" /> Simples de usar
-                </S.H2>
+                <S.H2>Simples de usar</S.H2>
                 <S.P>
                   O sistema foi desenhado para ser intuitivo e tornar sua
                   experiência cada vez mais natural. Em pouco tempo controla seu
@@ -79,9 +83,7 @@ const Home: React.FC = () => {
                 </S.P>
               </S.Item>
               <S.Item className="col-lg-4 col-md-6">
-                <S.H2>
-                  <S.ImgLi src={cartao} alt="App" /> Mais autonomia
-                </S.H2>
+                <S.H2>Mais autonomia</S.H2>
                 <S.P>
                   No XXXX, você tem liberdade para organizar sua grana como você
                   achar melhor, sem automatizações obrigatórias ou acesso às
@@ -89,9 +91,7 @@ const Home: React.FC = () => {
                 </S.P>
               </S.Item>
               <S.Item className="col-lg-4 col-md-6">
-                <S.H2>
-                  <S.ImgLi src={cartao} alt="App" /> Previsibilidade garantida
-                </S.H2>
+                <S.H2>Previsibilidade garantida</S.H2>
                 <S.P>
                   As faturas de todos os seus cartões de crédito reunidas em um
                   lugar só! Já imaginou? Tudo para garantir a previsibilidade
@@ -99,9 +99,7 @@ const Home: React.FC = () => {
                 </S.P>
               </S.Item>
               <S.Item className="col-lg-4 col-md-6">
-                <S.H2>
-                  <S.ImgLi src={cartao} alt="App" /> Seu futuro mais seguro
-                </S.H2>
+                <S.H2>Seu futuro mais seguro</S.H2>
                 <S.P>
                   Com seu dinheiro organizado fica muito mais fácil planejar o
                   futuro. Para te ajudar, o XXXX te mostra previsões valiosas
@@ -109,9 +107,7 @@ const Home: React.FC = () => {
                 </S.P>
               </S.Item>
               <S.Item className="col-lg-4 col-md-6">
-                <S.H2>
-                  <S.ImgLi src={cartao} alt="App" /> Economize tempo e dinheiro
-                </S.H2>
+                <S.H2>Economize tempo e dinheiro</S.H2>
                 <S.P>
                   Concentre suas informações financeiras em um único app, e não
                   perca tempo abrindo todos os aplicativos de banco para checar
@@ -119,9 +115,7 @@ const Home: React.FC = () => {
                 </S.P>
               </S.Item>
               <S.Item className="col-lg-4 col-md-6">
-                <S.H2>
-                  <S.ImgLi src={cartao} alt="App" /> Suporte que funciona
-                </S.H2>
+                <S.H2>Suporte que funciona</S.H2>
                 <S.P>
                   Dúvidas? Sugestões? Nosso suporte gente boa ajuda você! A
                   gente tá aqui para resolver seus problemas e deixar sua vida
@@ -131,38 +125,38 @@ const Home: React.FC = () => {
             </S.DivTextThirdBlock>
           </S.DivThirdBlock>
         </div>
-      </S.ThirdSection>
+      </S.GrayBackground>
 
       <div className="container">
-      <S.DivFourthBlock className="row">
-      <S.DivImgFourthBlock className="col-lg-6 col-md-12">
-        <S.ImgSecurity src={seguranca} alt="App" />
-      </S.DivImgFourthBlock>        
-        <S.DivTextFourthBlock className="row col-lg-6 col-md-12">
-          <S.H1>A segurança que você precisa para evoluir a sua gestão</S.H1>
-          <ul className="list-unstyled">
-            <S.Li>
-              <S.ImgLi src={check} alt="App" />
-              &nbsp;Nós não pedimos sua senha do banco. Nem hoje, nem nunca
-            </S.Li>
-            <S.Li>
-              <S.ImgLi src={check} alt="App" />
-              &nbsp;Tenha a facilidade de registrar e acompanhar seus gastos a
-              qualquer momento
-            </S.Li>
-            <S.Li>
-              <S.ImgLi src={check} alt="App" />
-              &nbsp;Gerencie as faturas de todos os seus cartão de crédito num
-              único lugar
-            </S.Li>
-            <S.Li>
-              <S.ImgLi src={check} alt="App" />
-              &nbsp;Importe os dados da sua planilha financeira e não comece do
-              zero
-            </S.Li>
-          </ul>
-        </S.DivTextFourthBlock>
-      </S.DivFourthBlock>
+        <S.DivFourthBlock className="row">
+          <S.DivImgFourthBlock className="col-lg-6 col-md-12">
+            <S.ImgSecurity src={seguranca} alt="App" />
+          </S.DivImgFourthBlock>
+          <S.DivTextFourthBlock className="row col-lg-6 col-md-12">
+            <S.H1>A segurança que você precisa para evoluir a sua gestão</S.H1>
+            <ul className="list-unstyled">
+              <S.Li>
+                <S.ImgLi src={check} alt="App" />
+                &nbsp;Nós não pedimos sua senha do banco. Nem hoje, nem nunca.
+              </S.Li>
+              <S.Li>
+                <S.ImgLi src={check} alt="App" />
+                &nbsp;Facilidade de registrar e acompanhar seus gastos a
+                qualquer momento.
+              </S.Li>
+              <S.Li>
+                <S.ImgLi src={check} alt="App" />
+                &nbsp;Gerencie as faturas de todos os seus cartão de crédito num
+                único lugar.
+              </S.Li>
+              <S.Li>
+                <S.ImgLi src={check} alt="App" />
+                &nbsp;Importe os dados da sua planilha financeira e não comece
+                do zero.
+              </S.Li>
+            </ul>
+          </S.DivTextFourthBlock>
+        </S.DivFourthBlock>
       </div>
     </>
   );

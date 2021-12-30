@@ -1,6 +1,6 @@
 import React, { useContext, useMemo, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { About, Contact, Home, SignIn, SignUp } from "./views";
+import { Contact, Home, SignIn, SignUp } from "./views";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Menu from "./components/menu";
 
@@ -13,7 +13,6 @@ const App: React.FC = () => {
           <Route path="/" element={<Home />} />
           <Route path="/signIn" element={<SignIn />} />
           <Route path="/signUp" element={<SignUp />} />
-          <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </Router>
