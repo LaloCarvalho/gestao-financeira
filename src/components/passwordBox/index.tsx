@@ -14,9 +14,10 @@ interface passordBoxProps {
   id: string;
   onChange: (event: any) => void;
   label: string;
+  link?: any;
 }
 
-const PasswordBox: React.FC<passordBoxProps> = ({ onChange, id, label }: passordBoxProps) => {
+const PasswordBox: React.FC<passordBoxProps> = ({ onChange, id, label, link }: passordBoxProps) => {
   const [showPassword, setshowPassword] = useState<boolean>(false);
 
   const handleClickShowPassword = () => {
@@ -39,7 +40,7 @@ const PasswordBox: React.FC<passordBoxProps> = ({ onChange, id, label }: passord
 
   return (
     <ThemeProvider theme={theme}>
-      <FormControl sx={{ m: 1, width: 440 }} variant="outlined">
+      <FormControl sx={{ m: 1, width: 350 }} variant="outlined">
         <InputLabel htmlFor="outlined-adornment-password">{label}</InputLabel>
         <OutlinedInput
           id={id}
@@ -59,6 +60,7 @@ const PasswordBox: React.FC<passordBoxProps> = ({ onChange, id, label }: passord
           }
           label={label}
         />
+        {link}        
       </FormControl>
     </ThemeProvider>
   );

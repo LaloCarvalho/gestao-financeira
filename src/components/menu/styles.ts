@@ -8,13 +8,12 @@ export const DivChildren = styled.div`
 `;
 
 export const Footer = styled.div`
-  padding-bottom: 20px;
-  padding-left: 1%;
 `;
 
 export const A = styled.a`
-  color: #FFFFFF8C;
+  color: white;
   text-decoration: none;  
+  font-size: 17px;
 
   &:hover {
     color: rgba(152, 93, 197, 1);
@@ -24,30 +23,31 @@ export const A = styled.a`
 
 export const DivCopyright = styled.div`
   color: #FFFFFF8C;
-  margin-left: 1%;
+  text-align: center;
+  padding-top: 10px;
 `;
 
 export const DivSocialMedias = styled.div`
-  text-align: right;
-  padding-right: 11%;
+  padding-top: 10px;
+  padding-bottom: 50px;
+  text-align: center;
 `;
 
 export const H5 = styled.h5`
   color: #FFFFFF8C;
-  text-align: left;
-  margin-left: 29%;
 `;
 
 export const H5Logo = styled.h5`
   color: #FFFFFF8C;
-  text-align: left;
-  margin-left: 23%;
+  margin-bottom: 20px;
 `;
 
 export const DivLogo = styled.div`
   color: #FFFFFF8C;
   text-decoration: none;
-  margin-left: 10%;
+  padding-top: 50px;
+  padding-bottom: 30px;
+  text-align: center;
 `;
 
 export const Div = styled.div`
@@ -67,28 +67,41 @@ export const Hr = styled.hr`
   height: 5px;
 `;
 
+export const ImgFooter = styled.img`
+  width: 30px;
+`;
+
 export const Img = styled.img`
-  margin-left: 10px;
+  margin-left: 15px;
   display: inline-block;
+  width: 35px;
+  height: 35px;
+  color: white;
 
   &:hover {
     cursor: pointer;
+    color: "#985dc5";
   }
 `;
 
 export const PDescription = styled.p`
-  text-align: left;
-  margin-left: 24%;
+`;
+
+export const DivList = styled.div`
+`;
+
+export const Ul = styled.ul`
 `;
 
 export const Li = styled.li`
-  text-align: left;
-  margin-left: 30%;
+  display: inline;
+  padding-left: 15px;
+  padding-right: 15px;
 `;
 
 export const navbar = { backgroundColor: "#200733"};
 export const navNormal = { color: "#ccc" };
 export const navHover = { color: "#985dc5" };
-export const Con = { paddingLeft: 155, paddingRight: 165 };
+export const Con = {  };
 
 
