@@ -12,7 +12,7 @@ export const DivFirstBlock = styled.div`
 
 export const ImgCarousel = styled.img`
   margin-top: 50px;
-  width: 70%;
+  width: 90%;
   max-height: 550px;
 `;
 

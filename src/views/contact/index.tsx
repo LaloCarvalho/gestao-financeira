@@ -8,6 +8,7 @@ import React, { useState } from "react";
 import TextBox from "../../components/textBox";
 import * as S from "./styles";
 import Button from "../../components/button";
+import contactUs from "./assets/contactUs.png";
 
 const Contact: React.FC = () => {
   const [email, setEmail] = useState<string>("");
@@ -25,8 +26,12 @@ const Contact: React.FC = () => {
   return (
     <S.Container className="container">
       <div className="row text-center">
-        <div className="col-lg-12 col-md-12">
-          <S.H1>Enviar uma solicitação</S.H1>
+        <S.LeftDiv className="col-lg-6 col-md-12">
+          <S.Img src={contactUs} alt="Contact Us" />
+        </S.LeftDiv>
+
+        <S.RightDiv className="col-lg-6 col-md-12">
+          <S.H1>Fale conosco</S.H1>
           <TextBox
             width={350}
             id="outlined-basic-name"
@@ -51,7 +56,7 @@ const Contact: React.FC = () => {
                 onChange={(event: any) => setDescription(event.target.value)}
               />
             </ThemeProvider>
-          </FormControl><br/>
+          </FormControl><br />
           <Button
             onClick={() => {
               console.log("alow");
@@ -59,7 +64,7 @@ const Contact: React.FC = () => {
           >
             Enviar
           </Button>
-        </div>
+        </S.RightDiv>
       </div>
     </S.Container>
   );

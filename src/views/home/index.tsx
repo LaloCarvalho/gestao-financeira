@@ -16,7 +16,7 @@ const Home: React.FC = () => {
   return (
     <>
       <S.GrayBackground>
-        <S.DivFirstBlock className="container-fluid">
+        <S.DivFirstBlock className="container">
           <div className="row">
             <Carousel fade className="col-lg-12 col-md-12 carousel-dark">
               <Carousel.Item interval={2000}>

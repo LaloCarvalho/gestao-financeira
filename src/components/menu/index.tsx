@@ -27,13 +27,10 @@ import {
 
 const Menu: React.FC = ({ children }) => {
   const [hoverHome, setHoverHome] = useState(false);
-  const [hoverAbout, setHoverAbout] = useState(false);
   const [hoverContact, setHoverContact] = useState(false);
   const [hoverSignIn, setHoverSignIn] = useState(false);
   const [hoverSignUp, setHoverSignUp] = useState(false);
-  const [hoverPlans, setHoverPlans] = useState(false);
-  const [hoverProduct, setHoverProduct] = useState(false);
-  const [hoverContent, setHoverContent] = useState(false);
+  const [hoverTESTE, setHoverTESTE] = useState(false);
 
   return (
     <>
@@ -80,6 +77,18 @@ const Menu: React.FC = ({ children }) => {
                 href="/contact"
               >
                 Contato
+              </Nav.Link>
+              <Nav.Link
+                onMouseEnter={() => {
+                  setHoverTESTE(true);
+                }}
+                onMouseLeave={() => {
+                  setHoverTESTE(false);
+                }}
+                style={hoverTESTE ? navHover : navNormal}
+                href="/credicardRegister"
+              >
+                TESTE
               </Nav.Link>
             </Nav>
             <Nav>
