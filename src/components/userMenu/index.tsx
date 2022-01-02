@@ -28,7 +28,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import logo from "./assets/logo.png";
 import Link from '@material-ui/core/Link';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useRoutes } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -103,12 +103,14 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 const UserMenu: React.FC = ({ children }) => {
   const theme = useTheme();
-  const [open, setOpen] = useState<boolean>(false);
+  //const [open, setOpen] = useState<boolean>(false);
   const [user, setUser] = useState<string>("Eduardo Diogenes");
   const [teste, setTeste] = useState<string>("");
 
   const [anchor, setAnchor] = React.useState<null | HTMLElement>(null);
   const openUserProfile = Boolean(anchor);
+  const storedOpen = localStorage.getItem('drawerOpen') === "true";
+  const [open, setOpen] = React.useState(storedOpen);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchor(event.currentTarget);
   };
@@ -116,21 +118,51 @@ const UserMenu: React.FC = ({ children }) => {
     setAnchor(null);
   };
 
+  const handleDrawerOpen = () => {
+    if (!open) {
+      setOpen(true);
+      localStorage.setItem('drawerOpen', "true");
+    } else {
+      setOpen(false);
+      localStorage.setItem('drawerOpen', "false");
+    }
+ };
+
   const handleUserMenuOpen = () => {
-    setOpen(true);
+    handleDrawerOpen();
+    //setOpen(true);
   };
 
   const handleUserMenuClose = () => {
-    setOpen(false);
+    handleDrawerOpen();
+    //setOpen(false);
   };
 
-  function DirectionClick(index: number) { 
-    let navigate = useNavigate();   
-    if(index === 0)
-      navigate('/');
-    if(index === 1)
-      navigate('/signIn');
-  };
+const itemsList = [
+  {
+    text: "Transações",
+    icon: <ReceiptLongOutlinedIcon />,
+    href: "/"
+  },
+  {
+    text: "Receitas",
+    icon: <MovingOutlinedIcon />,
+    href: "/signIn"
+  },
+  {
+    text: "Despesas",
+    icon: <TrendingDownOutlinedIcon />
+  },
+  {
+    text: "Cartões de Crédito",
+    icon: <CreditCardOutlinedIcon />,
+    href: "/credicardRegister"
+  },
+  {
+    text: "Relatórios",
+    icon: <AssessmentOutlinedIcon />
+  },
+]
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -224,23 +256,18 @@ const UserMenu: React.FC = ({ children }) => {
         <Divider />
         <S.DivOptionsMenu>
         <List>
-          {['Transações', 'Receitas', 'Despesas', 'Cartões de Crédito', 'Relatórios'].map((text, index) => (
-            <ListItem 
-              button 
-              key={text} 
-              onClick={() => DirectionClick(index)}
-            >
-              <ListItemIcon>
-                {index === 0 ? <ReceiptLongOutlinedIcon /> : ""}
-                {index === 1 ? <MovingOutlinedIcon /> : ""}
-                {index === 2 ? <TrendingDownOutlinedIcon /> : ""}
-                {index === 3 ? <CreditCardOutlinedIcon /> : ""}
-                {index === 4 ? <AssessmentOutlinedIcon /> : ""}
-              </ListItemIcon>
-              <ListItemText primary={text} />
+          {itemsList.map((item, index) => {
+            const { text, icon, href } = item;
+            return (
+            <ListItem style={S.Drawerlist} button component={Link} key={text} href={href}>
+              {icon && <ListItemIcon>{icon}</ListItemIcon>}
+            <ListItemText primary={text} />
             </ListItem>
-          ))}
+
+            );
+          })}
         </List>
+        
         </S.DivOptionsMenu>
         <Divider />
         <S.DivOptionsMenu>
@@ -249,7 +276,7 @@ const UserMenu: React.FC = ({ children }) => {
               <ListItem 
                 button 
                 key={text}
-                component={Link} 
+                component="a" 
                 href="/signIn"
               >
                 <ListItemIcon>

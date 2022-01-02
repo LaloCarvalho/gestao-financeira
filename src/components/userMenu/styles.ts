@@ -64,3 +64,5 @@ export const navbar = { backgroundColor: "#200733", align: "right" };
 export const menuItens = { fontFamily: "Open Sans" };
 
 export const menuItensIcons = { color: "#ccc" };
+
+export const Drawerlist = { color: "black"};
