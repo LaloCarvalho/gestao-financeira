@@ -24,7 +24,6 @@ export const A = styled.a`
 export const DivCopyright = styled.div`
   color: #FFFFFF8C;
   text-align: center;
-  padding-top: 10px;
 `;
 
 export const DivSocialMedias = styled.div`
@@ -46,7 +45,7 @@ export const DivLogo = styled.div`
   color: #FFFFFF8C;
   text-decoration: none;
   padding-top: 50px;
-  padding-bottom: 30px;
+  padding-bottom: 10px;
   text-align: center;
 `;
 

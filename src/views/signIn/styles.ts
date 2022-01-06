@@ -1,11 +1,28 @@
 import styled from 'styled-components';
+import back from "./assets/bg.gif";
 
-export const Container = styled.div` 
-  margin-top: 120px; 
-  margin-bottom: 80px;  
+export const GrayBackground = styled.div`
+  background-color: #f5f6fc;
+  padding-top: 120px; 
+  padding-bottom: 80px; 
+`;
+
+export const SubContainer = styled.div`
+  max-width: 1400px;
+  margin: 0;
+  padding: 0;
+`;
+
+export const Container = styled.div`    
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   padding-bottom: 80px;
-  background-color: white;
+  padding-top: 80px;
+  background-image: url(${back});
+  background-repeat: no-repeat;
+	background-size: cover;
+`;
+
+export const DivButton = styled.div`  
 `;
 
 export const LeftDiv = styled.div` 
@@ -21,15 +38,23 @@ export const RightDiv = styled.div`
 @media only screen and (max-width: 768px) {
   padding-top: 30px;
   }
+  
 `;
 
 export const H1 = styled.h1` 
+@media only screen and (max-width: 768px) {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  }
   font-family: 'Open Sans', sans-serif;
   padding-top: 50px;
   padding-bottom: 50px;
 `;
 
 export const H3 = styled.h3` 
+@media only screen and (max-width: 768px) {
+  padding-top: 30px;
+  }
   font-family: 'Open Sans', sans-serif;
   font-size: 15px;
   padding-top: 50px;
@@ -37,8 +62,8 @@ export const H3 = styled.h3`
 
 export const Button = styled.button` 
   font-family: 'Open Sans', sans-serif;
-  color: black;
-  background-color: white;
+  color: white;
+  background: linear-gradient(-30deg,#3b02ed,#8e2ae0 55%);
   margin-top: 10px;
   margin-bottom: 10px;
   padding: 10px;
@@ -47,9 +72,10 @@ export const Button = styled.button`
   border: none;
   border-radius: 5px;
   text-align: center;
+  font-weight: bold;
 
   &:hover {
-    background-color: #efefef;
+    transform: scale(1.1);
     cursor: pointer;
   }
 `;
@@ -57,6 +83,14 @@ export const Button = styled.button`
 export const Img = styled.img`
   width: 30px;
   height: 30px;
+  margin-right: 15px;
+`;
+
+export const ImgFacebook = styled.img`
+  width: 30px;
+  height: 30px;
+  margin-right: 15px;
+  margin-left: 15px;
 `;
 
 export const A = styled.a`
@@ -66,6 +100,7 @@ export const A = styled.a`
   text-align: left !important;
   font-weight: bold;
   font-family: 'Open Sans', sans-serif;
+  margin-bottom: 15px;
 
   &:hover {
     color: #662275;

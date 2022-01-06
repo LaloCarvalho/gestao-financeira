@@ -43,7 +43,7 @@ const GenericMenu: React.FC = () => {
               >
                 Início
               </Nav.Link>
-              <Nav.Link
+              {/* <Nav.Link
                 onMouseEnter={() => {
                   setHoverContact(true);
                 }}
@@ -54,8 +54,8 @@ const GenericMenu: React.FC = () => {
                 href="/contact"
               >
                 Contato
-              </Nav.Link>
-              <Nav.Link
+              </Nav.Link> */}
+              {/* <Nav.Link
                 onMouseEnter={() => {
                   setHoverTESTE(true);
                 }}
@@ -66,7 +66,7 @@ const GenericMenu: React.FC = () => {
                 href="/credicardRegister"
               >
                 TESTE
-              </Nav.Link>
+              </Nav.Link> */}
             </Nav>
             <Nav>
               <Nav.Link

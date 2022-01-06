@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
 
 export const Container = styled.div`
 `;
@@ -16,11 +18,12 @@ export const ImgLogo = styled.img`
   margin-right: 10px;
 `;
 
-export const navbarInfo = styled.div`
+export const NavbarInfo = styled.div`
   color: white;
   font-Size: 18;
   padding: 5px;
   border-radius: 100px;  
+  display: inline-block;
 
   &:hover {
     background-color: #662275;
@@ -29,7 +32,7 @@ export const navbarInfo = styled.div`
 `;
 
 export const DivLeftNavbar = styled.div`
-  margin-left: 20px;
+  padding-left: 30px;
   padding-top: 10px;
   display: inline-block;
 `;
@@ -45,13 +48,22 @@ export const DivLogo = styled.div`
   padding-top: 10px;
   padding-bottom: 10px;
   display: inline-block;
-  font-family: "Open Sans"
+  font-family: "Open Sans";
   font-size: 18px;
 `;
 
 export const DivIconMenu = styled.div`
   display: inline-block;
-  margin-left: 30px;
+  margin-left: 20px;
+`;
+
+export const Elipsis = styled.div`
+  white-space: nowrap; 
+  width: 160px; 
+  overflow: hidden;
+  text-overflow: ellipsis; 
+  display: inline-block;
+  vertical-align: middle;
 `;
 
 export const DivOptionsMenu = styled.div`
@@ -59,10 +71,37 @@ export const DivOptionsMenu = styled.div`
   color: black;
 `;
 
+interface Props {
+  button: any;
+  component: any;
+  key: string;
+  href: string;
+}
+
+export const ListItemDrawer = styled(ListItem)<Props>`
+  text-decoration: none;
+  color: black;
+  padding-left: 25px;
+  font-family: "Open Sans";  
+  :hover {
+    background-color: #662275;
+  }  
+`;
+
+export const Teste2 = styled(ListItem)`
+  background-color: #662275;
+  text-decoration: none;
+  color: black;
+  padding-left: 25px;
+  font-family: "Open Sans";  
+`;
+
 export const navbar = { backgroundColor: "#200733", align: "right" };
 
-export const menuItens = { fontFamily: "Open Sans" };
+export const menuItens = { fontFamily: "Open Sans", textDecoration: "none", color: "black" };
 
-export const menuItensIcons = { color: "#ccc" };
+export const menuItensIcons = { color: "#8C8C8C" };
 
-export const Drawerlist = { color: "black"};
+export const Drawerlist = { color: "black", paddingLeft: 25, fontFamily: "Open Sans", textDecoration: "none" };
+
+export const DrawerlistIcon = { color: "#8C8C8C" };

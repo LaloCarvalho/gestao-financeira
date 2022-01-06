@@ -38,6 +38,9 @@ export const DivImg = styled.div`
 `;
 
 export const DivImgFourthBlock = styled.div`
+@media only screen and (max-width: 768px) {    
+  text-align: center;
+  } 
   text-align: left;
 `;
 
@@ -58,7 +61,7 @@ export const P = styled.p`
 `;
 
 export const GrayBackground = styled.div`
-  background-color: #efefef;
+  background-color: #f5f6fc;
 `;
 
 export const DivThirdBlock = styled.div`

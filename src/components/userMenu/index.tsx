@@ -17,18 +17,18 @@ import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import AccountBoxOutlinedIcon from '@mui/icons-material/AccountBoxOutlined';
 import ArrowBackIosOutlinedIcon from '@mui/icons-material/ArrowBackIosOutlined';
-import ReceiptLongOutlinedIcon from '@mui/icons-material/ReceiptLongOutlined';
 import CreditCardOutlinedIcon from '@mui/icons-material/CreditCardOutlined';
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import AssessmentOutlinedIcon from '@mui/icons-material/AssessmentOutlined';
 import MovingOutlinedIcon from '@mui/icons-material/MovingOutlined';
 import TrendingDownOutlinedIcon from '@mui/icons-material/TrendingDownOutlined';
+import AccountBalanceOutlinedIcon from '@mui/icons-material/AccountBalanceOutlined';
 import photo from "./assets/photo.png";
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import logo from "./assets/logo.png";
 import Link from '@material-ui/core/Link';
-import { useNavigate, useRoutes } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -58,7 +58,6 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   alignItems: 'center',
   justifyContent: 'flex-end',
   padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
   ...theme.mixins.toolbar,
 }));
 
@@ -102,15 +101,12 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 );
 
 const UserMenu: React.FC = ({ children }) => {
-  const theme = useTheme();
-  //const [open, setOpen] = useState<boolean>(false);
   const [user, setUser] = useState<string>("Eduardo Diogenes");
-  const [teste, setTeste] = useState<string>("");
-
-  const [anchor, setAnchor] = React.useState<null | HTMLElement>(null);
-  const openUserProfile = Boolean(anchor);
+  const [anchor, setAnchor] = useState<null | HTMLElement>(null);  
   const storedOpen = localStorage.getItem('drawerOpen') === "true";
-  const [open, setOpen] = React.useState(storedOpen);
+  const [open, setOpen] = useState(storedOpen);
+  const openUserProfile = Boolean(anchor);  
+
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchor(event.currentTarget);
   };
@@ -130,28 +126,32 @@ const UserMenu: React.FC = ({ children }) => {
 
   const handleUserMenuOpen = () => {
     handleDrawerOpen();
-    //setOpen(true);
   };
 
   const handleUserMenuClose = () => {
     handleDrawerOpen();
-    //setOpen(false);
   };
 
 const itemsList = [
   {
-    text: "Transações",
-    icon: <ReceiptLongOutlinedIcon />,
-    href: "/"
+    text: "Início",
+    icon: <HomeOutlinedIcon />,
+    href: "/userHome"
   },
   {
     text: "Receitas",
     icon: <MovingOutlinedIcon />,
-    href: "/signIn"
+    href: "/income"
   },
   {
     text: "Despesas",
-    icon: <TrendingDownOutlinedIcon />
+    icon: <TrendingDownOutlinedIcon />,
+    href: "/expense"
+  },
+  {
+    text: "Contas de Banco",
+    icon: <AccountBalanceOutlinedIcon />,
+    href: "/accounts"
   },
   {
     text: "Cartões de Crédito",
@@ -160,7 +160,16 @@ const itemsList = [
   },
   {
     text: "Relatórios",
-    icon: <AssessmentOutlinedIcon />
+    icon: <AssessmentOutlinedIcon />,
+    href: "/report"
+  },
+]
+
+const itemsList2 = [
+  {
+    text: "Configurações",
+    icon: <SettingsOutlinedIcon />,
+    href: "/settings"
   },
 ]
 
@@ -196,10 +205,11 @@ const itemsList = [
               aria-expanded={openUserProfile ? 'true' : undefined}
               onClick={handleClick}
             >
-              <S.navbarInfo>
-                <S.Img src={photo} alt="User Photo" /> {user}
+              <S.NavbarInfo>
+                <S.Img src={photo} alt="User Photo" /> 
+                <S.Elipsis>{user}</S.Elipsis>
                 <ArrowDropDownOutlinedIcon />
-              </S.navbarInfo>
+              </S.NavbarInfo>
             </Button>
             <Menu
               aria-labelledby="demo-positioned-button"
@@ -220,10 +230,10 @@ const itemsList = [
                 horizontal: 'center',
               }}
             >
-              <MenuItem style={S.menuItens} onClick={handleClose}><AccountBoxOutlinedIcon style={S.menuItensIcons} />&nbsp;Meu Perfil</MenuItem>
-              <MenuItem style={S.menuItens} onClick={handleClose}><SettingsOutlinedIcon style={S.menuItensIcons} />&nbsp;Configurações</MenuItem>
+              <MenuItem style={S.menuItens} onClick={handleClose} component={Link} href="/profile"><AccountBoxOutlinedIcon style={S.menuItensIcons} />&nbsp;Meu Perfil</MenuItem>
+              <MenuItem style={S.menuItens} onClick={handleClose} component={Link} href="/userSettings"><SettingsOutlinedIcon style={S.menuItensIcons} />&nbsp;Configurações</MenuItem>
               <Divider />
-              <MenuItem style={S.menuItens} onClick={handleClose}><ExitToAppOutlinedIcon style={S.menuItensIcons} />&nbsp;Sair</MenuItem>
+              <MenuItem style={S.menuItens} onClick={handleClose} component={Link} href="/settings"><ExitToAppOutlinedIcon style={S.menuItensIcons} />&nbsp;Sair</MenuItem>
             </Menu>
           </S.DivRightNavbar>
         </div>
@@ -260,7 +270,7 @@ const itemsList = [
             const { text, icon, href } = item;
             return (
             <ListItem style={S.Drawerlist} button component={Link} key={text} href={href}>
-              {icon && <ListItemIcon>{icon}</ListItemIcon>}
+              {icon && <ListItemIcon style={S.DrawerlistIcon}>{icon}</ListItemIcon>}
             <ListItemText primary={text} />
             </ListItem>
 
@@ -271,21 +281,18 @@ const itemsList = [
         </S.DivOptionsMenu>
         <Divider />
         <S.DivOptionsMenu>
-          <List>
-            {['Configurações'].map((text, index) => (
-              <ListItem 
-                button 
-                key={text}
-                component="a" 
-                href="/signIn"
-              >
-                <ListItemIcon>
-                  {index === 0 ? <SettingsOutlinedIcon /> : ""}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
-          </List>
+        <List>
+          {itemsList2.map((item, index) => {
+            const { text, icon, href } = item;
+            return (
+            <ListItem style={S.Drawerlist} button component={Link} key={text} href={href}>
+              {icon && <ListItemIcon style={S.DrawerlistIcon}>{icon}</ListItemIcon>}
+            <ListItemText primary={text} />
+            </ListItem>
+
+            );
+          })}
+        </List>
         </S.DivOptionsMenu>
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3, background: "#f5f6fc" }}>

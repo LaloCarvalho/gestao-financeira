@@ -21,7 +21,7 @@ const GenericFooter: React.FC = () => {
             Você organiza e planeja sua vida financeira em um único lugar.
           </S.PDescription>
         </S.DivLogo>
-        <div className="container text-center">
+        {/* <div className="container text-center">
           <S.DivList className="row">
             <S.Ul className="col-lg-12 col-md-12">
               <S.Li>
@@ -38,7 +38,7 @@ const GenericFooter: React.FC = () => {
               </S.Li>
             </S.Ul>
           </S.DivList>
-        </div>
+        </div> */}
         <S.DivCopyright>© 2021 Copyright: Eduardo Diógenes</S.DivCopyright>
         <S.DivSocialMedias>
           <S.Img alt="" src={facebookLogo} />
