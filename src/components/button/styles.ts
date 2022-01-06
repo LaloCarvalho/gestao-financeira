@@ -3,25 +3,19 @@ import { styled } from '@mui/material/styles';
 import { Button } from "@mui/material";
 
 export const PurpleButton = styled(Button)({
-  boxShadow: 'none',
   textTransform: 'none',
   fontSize: 18,
-  marginTop: 15,
-  borderRadius: 10,
-  padding: '6px 12px',
-  border: '1px solid',
-  paddingTop: 20,
-  paddingBottom: 20,
+  borderRadius: 20,
+  outline: 'none',
+	border: 'none',
+  background: "linear-gradient(-30deg,#3b02ed,#8e2ae0 55%)",
+  paddingTop: 10,
+  paddingBottom: 10,
   paddingLeft: 40,
   paddingRight: 40,
   lineHeight: 1.5,
-  backgroundColor: '#662275',
+  //backgroundColor: '#662275',  
   '&:hover': {
-    backgroundColor: '#A527C2',
-    boxShadow: 'none',
-  },
-  '&:active': {
-    boxShadow: 'none',
-    backgroundColor: '#662275',
+    transform: "scale(1.1)",
   }
 });
