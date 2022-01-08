@@ -29,6 +29,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import logo from "./assets/logo.png";
 import Link from '@material-ui/core/Link';
+import { useLocation } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -106,6 +107,7 @@ const UserMenu: React.FC = ({ children }) => {
   const storedOpen = localStorage.getItem('drawerOpen') === "true";
   const [open, setOpen] = useState(storedOpen);
   const openUserProfile = Boolean(anchor);  
+  //const location = useLocation();
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchor(event.currentTarget);
@@ -269,7 +271,7 @@ const itemsList2 = [
           {itemsList.map((item, index) => {
             const { text, icon, href } = item;
             return (
-            <ListItem style={S.Drawerlist} button component={Link} key={text} href={href}>
+            <ListItem  style={S.Drawerlist} button component={Link} key={text} href={href} selected={href === window.location.pathname} >
               {icon && <ListItemIcon style={S.DrawerlistIcon}>{icon}</ListItemIcon>}
             <ListItemText primary={text} />
             </ListItem>
