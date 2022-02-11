@@ -114,6 +114,4 @@ export const Item = styled.div`
   }
 `;
 
-
-
 export const row = { paddingTop: 100, backgroundColor: 'rgba(95, 97, 98, 0.1)'};

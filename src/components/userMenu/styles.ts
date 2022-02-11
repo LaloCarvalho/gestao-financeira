@@ -98,10 +98,10 @@ export const Teste2 = styled(ListItem)`
 
 export const navbar = { backgroundColor: "#200733", align: "right" };
 
-export const menuItens = { fontFamily: "Open Sans", textDecoration: "none", color: "black" };
+export const menuItens = { fontFamily: "Open Sans", textDecoration: "none", color: "#8C8C8C" };
 
 export const menuItensIcons = { color: "#8C8C8C" };
 
-export const Drawerlist = { color: "black", paddingLeft: 25, fontFamily: "Open Sans", textDecoration: "none" };
+export const Drawerlist = { color: "#8C8C8C", paddingLeft: 25, fontFamily: "Open Sans", textDecoration: "none" };
 
 export const DrawerlistIcon = { color: "#8C8C8C" };
