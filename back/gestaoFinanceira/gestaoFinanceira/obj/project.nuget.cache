@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "1tOB/kSbqS6ilfbpzrj5eWh9KLu0T3Y5fc6L7ytKSNsUZk7VYjutF7Kr5JDdElIj12BYZ9edWUO78CqPAxnk3A==",
+  "dgSpecHash": "giHNgplAyFUxz4lba80Y0xKnIUfdZAJNLSQSjmfjC2HshsrpHZbFZj9LmdfyNu+ORug/wFBPi2lDleLN3csudA==",
   "success": true,
   "projectFilePath": "D:\\Github\\gestao-financeira\\back\\gestaoFinanceira\\gestaoFinanceira\\gestaoFinanceira.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Eduar\\.nuget\\packages\\automapper\\11.0.1\\automapper.11.0.1.nupkg.sha512",
     "C:\\Users\\Eduar\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
-    "C:\\Users\\Eduar\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\Eduar\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\Eduar\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.4\\microsoft.data.sqlclient.2.1.4.nupkg.sha512",
     "C:\\Users\\Eduar\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.1.1\\microsoft.data.sqlclient.sni.runtime.2.1.1.nupkg.sha512",
     "C:\\Users\\Eduar\\.nuget\\packages\\microsoft.entityframeworkcore\\6.0.2\\microsoft.entityframeworkcore.6.0.2.nupkg.sha512",

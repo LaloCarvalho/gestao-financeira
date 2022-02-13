@@ -8,78 +8,66 @@ namespace gestaoFinanceira.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private static List<User> users = new List<User>
-        {
-            new User {
-                Id = new Guid(),
-                Name = "admin",
-                CreatedDate = DateTime.Now,
-                Email="admin@teste.com.br",
-                Password="123"
-            },
-            new User {
-                Id = new Guid(),
-                Name = "Eduardo",
-                CreatedDate = DateTime.Now,
-                Email="Eduardo@teste.com.br",
-                Password="v6b"
-            }
-        };
         private readonly DataContext _context;
 
-        public UserController(DataContext context)
-        {
-            _context = context;
-        }
+        //public UserController(DataContext context)
+        //{
+        //    _context = context;
+        //}
 
-        [HttpGet]
-        public async Task<ActionResult<List<User>>> Get()
-        {
-            return Ok(await _context.User.ToListAsync());
-        }
+        //[HttpGet]
+        //public async Task<ActionResult<List<User>>> Get()
+        //{
+        //    return Ok(await _context.User.ToListAsync());
+        //}
 
-        [HttpGet("{Id}")]
-        public async Task<ActionResult<User>> Get(Guid Id)
-        {
-            var user = await _context.User.FindAsync(Id);
-            if (user == null)
-                return BadRequest("User not found.");
+        //[HttpGet("{Id}")]
+        //public async Task<ActionResult<User>> Get(Guid Id)
+        //{
+        //    var user = await _context.User.FindAsync(Id);
+        //    if (user == null)
+        //        return BadRequest("User not found.");
 
-            return Ok(user);
-        }
+        //    return Ok(user);
+        //}
 
-        [HttpPost]
-        public async Task<ActionResult<List<User>>> AddUser(User user)
-        {
-            _context.User.Add(user);
-            await _context.SaveChangesAsync();
+        //[HttpPost]
+        //public async Task<ActionResult<List<User>>> AddUser(User user)
+        //{
+        //    _context.User.Add(user);
+        //    await _context.SaveChangesAsync();
 
-            return Ok(await _context.User.ToListAsync());
-        }
+        //    return Ok(await _context.User.ToListAsync());
+        //}
 
-        [HttpPut]
-        public async Task<ActionResult<List<User>>> UpdateUser(User request)
-        {
-            var user = users.Find(u => u.Id == request.Id);
-            if (user == null)
-                return BadRequest("User not found.");
-            user.Name = request.Name;
-            user.Email = request.Email;
-            user.Password = request.Password;
-            user.LastModified = DateTime.Now;
+        //[HttpPut]
+        //public async Task<ActionResult<List<User>>> UpdateUser(User request)
+        //{
+        //    var dbUser = await _context.User.FindAsync(request.Id);
+        //    if (dbUser == null)
+        //        return BadRequest("User not found.");
 
-            return Ok(users);
-        }
+        //    dbUser.Name = request.Name;
+        //    dbUser.Email = request.Email;
+        //    dbUser.Password = request.Password;
+        //    dbUser.LastModified = DateTime.Now;
 
-        [HttpDelete("{Id}")]
-        public async Task<ActionResult<List<User>>> DeleteUser(Guid Id)
-        {
-            var user = users.Find(u => u.Id == Id);
-            if (user == null)
-                return BadRequest("User not found.");
-            users.Remove(user);
+        //    await _context.SaveChangesAsync();
 
-            return Ok(users);
-        }
+        //    return Ok(await _context.User.ToListAsync());
+        //}
+
+        //[HttpDelete("{Id}")]
+        //public async Task<ActionResult<List<User>>> DeleteUser(Guid Id)
+        //{
+        //    var dbUser = await _context.User.FindAsync(Id);
+        //    if (dbUser == null)
+        //        return BadRequest("User not found.");
+
+        //    _context.User.Remove(dbUser);
+        //    await _context.SaveChangesAsync();
+
+        //    return Ok(await _context.User.ToListAsync());
+        //}
     }
 }
