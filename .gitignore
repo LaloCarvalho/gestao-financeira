@@ -426,5 +426,5 @@ FodyWeavers.xsd
 *.user
 _ReSharper.*
 bin
-obj
+*/obj
 packages
