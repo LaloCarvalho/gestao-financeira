@@ -1,5 +1,5 @@
 import { createTheme } from "@mui/material/styles";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { SelectProps } from "../../types";
 import SignUpButton from "../../components/button";
 import TextBox from "../../components/textBox";
@@ -8,6 +8,7 @@ import * as S from "./styles";
 import google from "./assets/google.png";
 import facebook from "./assets/facebook.png";
 import twitter from "./assets/twitter.png";
+import axios from 'axios';
 import {
   Checkbox,
   Divider,
@@ -20,6 +21,7 @@ import {
   Select,
   ThemeProvider,
 } from "@mui/material";
+import { Login } from "@mui/icons-material";
 
 const SignUp: React.FC = () => {
   const [name, setName] = useState<string>("");
@@ -31,6 +33,7 @@ const SignUp: React.FC = () => {
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [genderChecked, setGenderChecked] = useState<number>(0);
+  const [ api ] = useContext(ServicesContext);
 
   const months = [
     { value: 1, label: "Janeiro" },
@@ -62,6 +65,29 @@ const SignUp: React.FC = () => {
   const handleClick = (event: React.MouseEvent<HTMLElement>, text: string) => {
     console.log(text);
   };
+
+  const Login = () => {
+    try {
+      //if (!orderSelected)
+        //throw new Error('Por favor, selecione um pedido!');
+      apiEntradaDireta.user.postInsertProductByOrder({
+        Name: ,
+        Email: ,
+        PasswordHash: 
+      },
+        apiEntradaDireta,
+      )
+        .then((result: any) => {
+        })
+        .catch((error: any) => {
+          console.log(error.result)
+        })
+        .finally(() => {
+        });
+
+    } catch (e: any) {
+    }
+  }
 
   return (
     <S.GrayBackground>
@@ -186,7 +212,7 @@ const SignUp: React.FC = () => {
           <S.DivButtom>
             <SignUpButton
               onClick={() => {
-                console.log("alow");
+                Login();
               }}
             >
               Cadastrar
