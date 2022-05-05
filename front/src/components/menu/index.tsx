@@ -6,7 +6,7 @@ import UserMenu from "../../components/userMenu";
 import UserFooter from "../../components/userFooter";
 
 const Menu: React.FC = ({ children }) => {
-  const [hasUser, setHasUser] = useState<boolean>(true);
+  const [hasUser, setHasUser] = useState<boolean>(false);
 
   return (
     <>
