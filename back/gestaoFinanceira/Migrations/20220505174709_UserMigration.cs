@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace gestaoFinanceira.Migrations
 {
-    public partial class CreateInitial : Migration
+    public partial class UserMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -16,12 +16,10 @@ namespace gestaoFinanceira.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PasswordHash = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
-                    PasswordSalt = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
+                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    LastModified = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IsEnable = table.Column<bool>(type: "bit", nullable: false)
+                    LastModified = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Active = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
