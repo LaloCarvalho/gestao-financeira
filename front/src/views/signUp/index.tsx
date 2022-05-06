@@ -22,6 +22,7 @@ import {
   ThemeProvider,
 } from "@mui/material";
 import { Login } from "@mui/icons-material";
+import { ServicesContext } from "../../hooks";
 
 const SignUp: React.FC = () => {
   const [name, setName] = useState<string>("");
@@ -33,7 +34,7 @@ const SignUp: React.FC = () => {
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [genderChecked, setGenderChecked] = useState<number>(0);
-  const [ api ] = useContext(ServicesContext);
+  const { api } = useContext(ServicesContext);
 
   const months = [
     { value: 1, label: "Janeiro" },
@@ -69,13 +70,13 @@ const SignUp: React.FC = () => {
   const Login = () => {
     try {
       //if (!orderSelected)
-        //throw new Error('Por favor, selecione um pedido!');
-      apiEntradaDireta.user.postInsertProductByOrder({
-        Name: ,
-        Email: ,
-        PasswordHash: 
+      //throw new Error('Por favor, selecione um pedido!');
+      api.user.postNewUser({
+        Name: name,
+        Email: email,
+        Password: password
       },
-        apiEntradaDireta,
+        api,
       )
         .then((result: any) => {
         })
@@ -95,13 +96,13 @@ const SignUp: React.FC = () => {
         <S.SubContainer className="row">
           <S.H1>Cadastre-se</S.H1>
           <S.DivButtomGoogle>
-          <S.Button
-            onClick={() => {
-              console.log("alow");
-            }}
-          >
-            <S.Img src={google} alt="Google" />Cadastrar-se com o Google
-          </S.Button>
+            <S.Button
+              onClick={() => {
+                console.log("alow");
+              }}
+            >
+              <S.Img src={google} alt="Google" />Cadastrar-se com o Google
+            </S.Button>
           </S.DivButtomGoogle>
 
           <S.Hr>
@@ -223,7 +224,7 @@ const SignUp: React.FC = () => {
           </S.H3>
         </S.SubContainer>
       </S.Container>
-    </S.GrayBackground>    
+    </S.GrayBackground>
   );
 };
 
