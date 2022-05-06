@@ -3,8 +3,8 @@ import back from "./assets/bg.gif";
 
 export const GrayBackground = styled.div`
   background-color: #f5f6fc;
-  padding-top: 120px; 
-  padding-bottom: 80px; 
+  padding-top: 70px; 
+  padding-bottom: 0px; 
 `;
 
 export const SubContainer = styled.div`

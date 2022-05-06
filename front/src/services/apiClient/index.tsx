@@ -5,10 +5,15 @@ import BaseClient, { GenericRoutes, GenericRoutesWithCustomPut } from '../baseCl
 export default class apiClient extends BaseClient {
 
   public user = {
-    ...new GenericRoutes<User, User>('user'),
-
     postNewUser: async (body: User, client: BaseClient): Promise<AxiosResponse> => {
       return client.post(`User/register`, '', body)
     },
+
+    postLogin: async (body: User, client: BaseClient): Promise<AxiosResponse<User>> => {
+      return client.post(`User/login`, '', body)
+    },
+
+    getTeste: async (client: BaseClient): Promise<AxiosResponse<User>> =>
+      client.get(`User`),
   }
 }

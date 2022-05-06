@@ -9,6 +9,7 @@ interface textBoxProps {
   label: string;
   width?: number;
   inputProps?: number;
+  value?: string
 }
 
 const theme = createTheme({
@@ -19,7 +20,7 @@ const theme = createTheme({
   },
 });
 
-const textBox: React.FC<textBoxProps> = ({ onChange, id, label, width, inputProps }: textBoxProps) => {
+const textBox: React.FC<textBoxProps> = ({ onChange, id, label, width, value, inputProps }: textBoxProps) => {
   return (
     <FormControl sx={{ m: 1, width: width }}>
       <ThemeProvider theme={theme}>
@@ -28,6 +29,7 @@ const textBox: React.FC<textBoxProps> = ({ onChange, id, label, width, inputProp
           label={label}
           variant="outlined"
           onChange={onChange}
+          value={value}
           inputProps={{ maxLength: {inputProps} }}
         />
       </ThemeProvider>

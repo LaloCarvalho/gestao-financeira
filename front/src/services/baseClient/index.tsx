@@ -2,62 +2,54 @@ import axios, { AxiosInstance, AxiosResponse } from "axios";
 
 export default class BaseClient {
   public client: AxiosInstance;
-  public actualRequest: any;
 
-  constructor(baseURL: string) {
+  constructor(baseURL: string, token?: string) {
     this.client = axios.create({
       baseURL: baseURL,
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
       },
     });
   }
 
-  public async get<T>(controller: string, route: string = '', props: Object = {}, headers?: any) {
-    this.actualRequest = axios.CancelToken.source();
+  public async get<T>(controller: string, route: string = '', headers?: any) {
 
     return await this.client
       .get<T>(
-        `/${controller}${route ? '/' + route : ''}/${(props)}`,
+        `/${controller}${route ? '/' + route : ''}`,
         {
           headers: headers,
-          cancelToken: this.actualRequest.token
         }
       )
       .then(((resultado: any) => resultado));
   }
 
   public async post(controller: string, route: string = '', body: Object = {}) {
-    this.actualRequest = axios.CancelToken.source();
 
     return await this.client
       .post(
         `/${controller}${route ? '/' + route : ''}`,
         body,
-        { cancelToken: this.actualRequest.token }
       )
       .then(((resultado: any) => resultado));
   }
 
   public async put(controller: string, route: string = '', body: Object = {}) {
-    this.actualRequest = axios.CancelToken.source();
 
     return await this.client
       .put(
         `/${controller}${route ? '/' + route : ''}`,
         body,
-        { cancelToken: this.actualRequest.token }
       )
       .then(((resultado: any) => resultado));
   }
 
   public async delete(controller: string, route: string = '', id: number) {
-    this.actualRequest = axios.CancelToken.source();
 
     return await this.client
       .delete(
         `/${controller}${route ? '/' + route : ''}`,
-        { cancelToken: this.actualRequest.token }
       )
       .then(((resultado: any) => resultado));
   }

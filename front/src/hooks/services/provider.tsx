@@ -1,15 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ApiClient } from '../../services';
 import ServicesContext from './context';
+
+const BASE_URL = "https://localhost:7297/api/";
 
 const Provider: React.FC = ({
   children,
 }) => {
-  const apiClient = new ApiClient("https://localhost:7297/api/");
+  const [apiClient, setApiClient] = useState<ApiClient>(new ApiClient(BASE_URL));
+
+  const setToken = (token: string) => {
+    setApiClient(new ApiClient(BASE_URL, token));
+  }
 
   return (
     <ServicesContext.Provider value={{
       api: apiClient,
+      setToken: setToken
     }}>
       {children}
     </ServicesContext.Provider>

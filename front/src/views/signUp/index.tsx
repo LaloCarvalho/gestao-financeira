@@ -8,7 +8,7 @@ import * as S from "./styles";
 import google from "./assets/google.png";
 import facebook from "./assets/facebook.png";
 import twitter from "./assets/twitter.png";
-import axios from 'axios';
+import Swal from 'sweetalert2';
 import {
   Checkbox,
   Divider,
@@ -67,18 +67,38 @@ const SignUp: React.FC = () => {
     console.log(text);
   };
 
-  const Login = () => {
+  const Register = () => {
     try {
-      //if (!orderSelected)
-      //throw new Error('Por favor, selecione um pedido!');
+      if (!name)
+        throw new Error('Por favor, preencha o nome!');
+      if (!password)
+        throw new Error('Por favor, preencha a senha!');
+      if (!email)
+        throw new Error('Por favor, preencha o email!');
+      if (!confirmPassword)
+        throw new Error('Por favor, selecione preencha o o confirma a senha!');
+      if (password != confirmPassword)
+        throw new Error('As senha digitadas nao sao iguais!');
       api.user.postNewUser({
-        Name: name,
-        Email: email,
-        Password: password
+        name: name,
+        email: email,
+        password: password
       },
         api,
       )
         .then((result: any) => {
+          setName(""); 
+          setEmail(""); 
+          setPassword(""); 
+          setConfirmPassword("");
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Cadastrado com sucesso!',
+            toast: true,
+            showConfirmButton: false,
+            timer: 3000
+          })
         })
         .catch((error: any) => {
           console.log(error.result)
@@ -87,6 +107,14 @@ const SignUp: React.FC = () => {
         });
 
     } catch (e: any) {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: e.message,
+          toast: true,
+          showConfirmButton: false,
+          timer: 3000
+        })
     }
   }
 
@@ -114,6 +142,7 @@ const SignUp: React.FC = () => {
               width={350}
               id="outlined-basic-name"
               label="Nome"
+              value={name}
               onChange={(event: any) => setName(event.target.value)}
             ></TextBox>
             {/* <ThemeProvider theme={theme}>
@@ -155,6 +184,7 @@ const SignUp: React.FC = () => {
               id="outlined-basic-password"
               onChange={(event: any) => setPassword(event.target.value)}
               label="Senha"
+              value={password}
             ></PasswordBox>
           </S.LeftDiv>
 
@@ -163,6 +193,7 @@ const SignUp: React.FC = () => {
               width={350}
               id="outlined-basic-email"
               label="Email"
+              value={email}
               onChange={(event: any) => setEmail(event.target.value)}
             ></TextBox>
             {/* <S.GenderContainer>
@@ -206,6 +237,7 @@ const SignUp: React.FC = () => {
             </S.GenderContainer> */}
             <PasswordBox
               id="outlined-basic-password-confirmation"
+              value={confirmPassword}
               onChange={(event: any) => setConfirmPassword(event.target.value)}
               label="Confirme a Senha"
             ></PasswordBox>
@@ -213,7 +245,7 @@ const SignUp: React.FC = () => {
           <S.DivButtom>
             <SignUpButton
               onClick={() => {
-                Login();
+                Register();
               }}
             >
               Cadastrar

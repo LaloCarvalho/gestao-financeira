@@ -1,28 +1,29 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import * as S from "./styles";
 import GenericMenu from "../../components/genericMenu";
 import GenericFooter from "../../components/genericFooter";
 import UserMenu from "../../components/userMenu";
 import UserFooter from "../../components/userFooter";
+import { SecurityContext } from "../../hooks";
 
 const Menu: React.FC = ({ children }) => {
-  const [hasUser, setHasUser] = useState<boolean>(false);
+  const { User } = useContext(SecurityContext);
 
   return (
     <>
-      {hasUser ?
+      {User ?
         <UserMenu>
           <S.DivChildren>{children}</S.DivChildren>
         </UserMenu> :
         <GenericMenu></GenericMenu>
 
       }
-      {!hasUser ?
+      {!User ?
         <S.DivChildren>{children}</S.DivChildren> :
         ""
       }
 
-      {hasUser ?
+      {User ?
         <UserFooter></UserFooter> :
         <GenericFooter></GenericFooter>
       }

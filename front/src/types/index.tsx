@@ -1,3 +1,4 @@
+import { Dispatch } from "react";
 import { ApiClient } from "../services";
 
 export interface SelectProps {
@@ -6,11 +7,8 @@ export interface SelectProps {
 }
 
 export interface User {
-  Name: string;
-  Email: string;
-  Password: string;
-}
-
-export interface IServicesContext {
-  api: ApiClient;
+  name?: string;
+  email: string;
+  password: string;
+  token?: string;
 }
