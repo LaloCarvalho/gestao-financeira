@@ -15,9 +15,10 @@ interface passordBoxProps {
   onChange: (event: any) => void;
   label: string;
   link?: any;
+  value?: string;
 }
 
-const PasswordBox: React.FC<passordBoxProps> = ({ onChange, id, label, link }: passordBoxProps) => {
+const PasswordBox: React.FC<passordBoxProps> = ({ onChange, id, label, link, value }: passordBoxProps) => {
   const [showPassword, setshowPassword] = useState<boolean>(false);
 
   const handleClickShowPassword = () => {
@@ -46,6 +47,7 @@ const PasswordBox: React.FC<passordBoxProps> = ({ onChange, id, label, link }: p
           id={id}
           type={showPassword ? "text" : "password"}
           onChange={onChange}
+          value={value}
           endAdornment={
             <InputAdornment position="end">
               <IconButton

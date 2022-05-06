@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import { SecurityContext } from "../../hooks";
 import * as S from "./styles";
 
 const CredicardRegister: React.FC = () => {
+  const { User, SetUser } = useContext(SecurityContext);
+
+  useEffect(() => {
+    console.log(User);
+  }, []);
+  
   return (
     <S.Container className="container">
       <div className="row text-center">

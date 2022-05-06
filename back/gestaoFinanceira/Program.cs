@@ -1,6 +1,5 @@
 global using gestaoFinanceira.Data;
 global using Microsoft.EntityFrameworkCore;
-using DocumentFormat.OpenXml;
 using gestaoFinanceira.Repositories;
 using gestaoFinanceira.Services;
 using gestaoFinanceira.Utils;
@@ -21,7 +20,12 @@ builder.Services.AddDbContext<DataContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddCors(options => options.AddPolicy("AllowAll", policy =>
+{
+    policy.AllowAnyOrigin();
+    policy.AllowAnyMethod();
+    policy.AllowAnyHeader();
+}));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -58,6 +62,8 @@ builder.Services.AddSwaggerGen(c =>
         }
     );
 
+
+
     c.AddSecurityDefinition("bearer", new OpenApiSecurityScheme
     {
         Name = "Authorization",
@@ -82,12 +88,12 @@ builder.Services.AddSwaggerGen(c =>
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseCors("AllowAll");
 
 app.UseHttpsRedirection();
 

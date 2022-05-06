@@ -1,7 +1,9 @@
-﻿using gestaoFinanceira.Model;
+﻿using AutoMapper;
+using gestaoFinanceira.Model;
 using gestaoFinanceira.Services;
 using gestaoFinanceira.Utils;
 using gestaoFinanceira.ViewModel;
+using gestaoFinanceira.ViewModel.User;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,10 +16,12 @@ namespace gestaoFinanceira.Controllers
     public class UserController : ControllerBase
     {
         private readonly UserService _service;
+        private readonly IMapper _mapper;
 
-        public UserController(UserService service)
+        public UserController(UserService service, IMapper mapper)
         {
             _service = service;
+            _mapper = mapper;
         }
 
         [AllowAnonymous]
@@ -31,8 +35,10 @@ namespace gestaoFinanceira.Controllers
                     return NotFound(new { message = "Usuário ou senha inválido." });
                 else
                 {
-                    string token = Token.CreateToken(user);
-                    return Ok(token);
+                    var userAuth = _mapper.Map<User, AuthViewModel>(user);
+                    userAuth.AccessToken = Token.CreateToken(user);
+
+                    return Ok(userAuth);
                 }
             }
             catch (Exception ex)

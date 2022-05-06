@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import * as S from "./styles";
 import { styled, useTheme, Theme, CSSObject } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -29,6 +29,8 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import logo from "./assets/logo.png";
 import Link from '@material-ui/core/Link';
+import { SecurityContext, ServicesContext } from "../../hooks";
+import { Logout } from "@mui/icons-material";
 
 const drawerWidth = 240;
 
@@ -101,11 +103,16 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 );
 
 const UserMenu: React.FC = ({ children }) => {
-  const [user, setUser] = useState<string>("Eduardo Diogenes");
   const [anchor, setAnchor] = useState<null | HTMLElement>(null);  
   const storedOpen = localStorage.getItem('drawerOpen') === "true";
   const [open, setOpen] = useState(storedOpen);
   const openUserProfile = Boolean(anchor);  
+  const { User, SetUser } = useContext(SecurityContext);
+  const { api } = useContext(ServicesContext);
+
+  
+  useEffect(() => {
+  }, []);
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchor(event.currentTarget);
@@ -173,6 +180,38 @@ const itemsList2 = [
   },
 ]
 
+
+const LogOut = () => {
+  SetUser(undefined);
+};
+
+const Profile = () => {
+  Teste();
+};
+
+const Settings = () => {
+  
+};
+
+const Teste = () => {
+  try {
+    api.user.getTeste(
+      api,
+    )
+      .then((result: any) => {
+        console.log(result.data);
+      })
+      .catch((error: any) => {
+        console.log(error.result)
+      })
+      .finally(() => {
+      });
+
+  } catch (e: any) {
+      console.log(e.message)
+  }
+}
+
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
@@ -207,7 +246,7 @@ const itemsList2 = [
             >
               <S.NavbarInfo>
                 <S.Img src={photo} alt="User Photo" /> 
-                <S.Elipsis>{user}</S.Elipsis>
+                <S.Elipsis>{User?.name}</S.Elipsis>
                 <ArrowDropDownOutlinedIcon />
               </S.NavbarInfo>
             </Button>
@@ -230,10 +269,10 @@ const itemsList2 = [
                 horizontal: 'center',
               }}
             >
-              <MenuItem style={S.menuItens} onClick={handleClose} component={Link} href="/profile"><AccountBoxOutlinedIcon style={S.menuItensIcons} />&nbsp;Meu Perfil</MenuItem>
-              <MenuItem style={S.menuItens} onClick={handleClose} component={Link} href="/userSettings"><SettingsOutlinedIcon style={S.menuItensIcons} />&nbsp;Configurações</MenuItem>
+              <MenuItem style={S.menuItens} onClick={Profile} component={Link} ><AccountBoxOutlinedIcon style={S.menuItensIcons} />&nbsp;Meu Perfil</MenuItem>
+              <MenuItem style={S.menuItens} onClick={Settings} component={Link} href="/userSettings"><SettingsOutlinedIcon style={S.menuItensIcons} />&nbsp;Configurações</MenuItem>
               <Divider />
-              <MenuItem style={S.menuItens} onClick={handleClose} component={Link} href="/settings"><ExitToAppOutlinedIcon style={S.menuItensIcons} />&nbsp;Sair</MenuItem>
+              <MenuItem style={S.menuItens} onClick={LogOut} component={Link} href="/signIn"><ExitToAppOutlinedIcon style={S.menuItensIcons} />&nbsp;Sair</MenuItem>
             </Menu>
           </S.DivRightNavbar>
         </div>

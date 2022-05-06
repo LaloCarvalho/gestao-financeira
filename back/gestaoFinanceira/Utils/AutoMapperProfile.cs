@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using gestaoFinanceira.Model;
 using gestaoFinanceira.ViewModel;
+using gestaoFinanceira.ViewModel.User;
 using System.Security.Cryptography;
 
 namespace gestaoFinanceira.Utils;
@@ -19,5 +20,6 @@ public class AutoMapperProfile : Profile
                 dest => dest.PasswordHash,
                  opt => opt.MapFrom(src => hash.PasswordHash(src.Password)));
         CreateMap<User, UserViewModel>();
+        CreateMap<User, AuthViewModel>();
     }
 }

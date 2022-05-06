@@ -1,5 +1,5 @@
 import { createTheme } from "@mui/material/styles";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { SelectProps } from "../../types";
 import SignUpButton from "../../components/button";
 import TextBox from "../../components/textBox";
@@ -8,6 +8,7 @@ import * as S from "./styles";
 import google from "./assets/google.png";
 import facebook from "./assets/facebook.png";
 import twitter from "./assets/twitter.png";
+import Swal from 'sweetalert2';
 import {
   Checkbox,
   Divider,
@@ -20,6 +21,8 @@ import {
   Select,
   ThemeProvider,
 } from "@mui/material";
+import { Login } from "@mui/icons-material";
+import { ServicesContext } from "../../hooks";
 
 const SignUp: React.FC = () => {
   const [name, setName] = useState<string>("");
@@ -31,6 +34,7 @@ const SignUp: React.FC = () => {
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [genderChecked, setGenderChecked] = useState<number>(0);
+  const { api } = useContext(ServicesContext);
 
   const months = [
     { value: 1, label: "Janeiro" },
@@ -63,19 +67,70 @@ const SignUp: React.FC = () => {
     console.log(text);
   };
 
+  const Register = () => {
+    try {
+      if (!name)
+        throw new Error('Por favor, preencha o nome!');
+      if (!password)
+        throw new Error('Por favor, preencha a senha!');
+      if (!email)
+        throw new Error('Por favor, preencha o email!');
+      if (!confirmPassword)
+        throw new Error('Por favor, selecione preencha o o confirma a senha!');
+      if (password != confirmPassword)
+        throw new Error('As senha digitadas nao sao iguais!');
+      api.user.postNewUser({
+        name: name,
+        email: email,
+        password: password
+      },
+        api,
+      )
+        .then((result: any) => {
+          setName(""); 
+          setEmail(""); 
+          setPassword(""); 
+          setConfirmPassword("");
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Cadastrado com sucesso!',
+            toast: true,
+            showConfirmButton: false,
+            timer: 3000
+          })
+        })
+        .catch((error: any) => {
+          console.log(error.result)
+        })
+        .finally(() => {
+        });
+
+    } catch (e: any) {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: e.message,
+          toast: true,
+          showConfirmButton: false,
+          timer: 3000
+        })
+    }
+  }
+
   return (
     <S.GrayBackground>
       <S.Container className="container text-center">
         <S.SubContainer className="row">
           <S.H1>Cadastre-se</S.H1>
           <S.DivButtomGoogle>
-          <S.Button
-            onClick={() => {
-              console.log("alow");
-            }}
-          >
-            <S.Img src={google} alt="Google" />Cadastrar-se com o Google
-          </S.Button>
+            <S.Button
+              onClick={() => {
+                console.log("alow");
+              }}
+            >
+              <S.Img src={google} alt="Google" />Cadastrar-se com o Google
+            </S.Button>
           </S.DivButtomGoogle>
 
           <S.Hr>
@@ -87,6 +142,7 @@ const SignUp: React.FC = () => {
               width={350}
               id="outlined-basic-name"
               label="Nome"
+              value={name}
               onChange={(event: any) => setName(event.target.value)}
             ></TextBox>
             {/* <ThemeProvider theme={theme}>
@@ -128,6 +184,7 @@ const SignUp: React.FC = () => {
               id="outlined-basic-password"
               onChange={(event: any) => setPassword(event.target.value)}
               label="Senha"
+              value={password}
             ></PasswordBox>
           </S.LeftDiv>
 
@@ -136,6 +193,7 @@ const SignUp: React.FC = () => {
               width={350}
               id="outlined-basic-email"
               label="Email"
+              value={email}
               onChange={(event: any) => setEmail(event.target.value)}
             ></TextBox>
             {/* <S.GenderContainer>
@@ -179,6 +237,7 @@ const SignUp: React.FC = () => {
             </S.GenderContainer> */}
             <PasswordBox
               id="outlined-basic-password-confirmation"
+              value={confirmPassword}
               onChange={(event: any) => setConfirmPassword(event.target.value)}
               label="Confirme a Senha"
             ></PasswordBox>
@@ -186,7 +245,7 @@ const SignUp: React.FC = () => {
           <S.DivButtom>
             <SignUpButton
               onClick={() => {
-                console.log("alow");
+                Register();
               }}
             >
               Cadastrar
@@ -197,7 +256,7 @@ const SignUp: React.FC = () => {
           </S.H3>
         </S.SubContainer>
       </S.Container>
-    </S.GrayBackground>    
+    </S.GrayBackground>
   );
 };
 
