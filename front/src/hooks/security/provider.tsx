@@ -17,6 +17,8 @@ const Provider: React.FC = ({
   useEffect(() => {
     if (user) {
       localStorage.setItem("loggedUser", JSON.stringify(user));
+    } else {
+      localStorage.removeItem("loggedUser");
     }
   }, [user]);
 

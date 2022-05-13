@@ -7,7 +7,8 @@ const BASE_URL = "https://localhost:7297/api/";
 const Provider: React.FC = ({
   children,
 }) => {
-  const [apiClient, setApiClient] = useState<ApiClient>(new ApiClient(BASE_URL));
+  const token = localStorage.getItem("loggedUser");
+  const [apiClient, setApiClient] = useState<ApiClient>(new ApiClient(BASE_URL, token ? JSON.parse(token).accessToken : undefined));
 
   const setToken = (token: string) => {
     setApiClient(new ApiClient(BASE_URL, token));

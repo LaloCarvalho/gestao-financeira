@@ -5,12 +5,6 @@ import ListItem from '@mui/material/ListItem';
 export const Container = styled.div`
 `;
 
-export const Img = styled.img`
-  width: 40px;
-  height: 40px;
-  margin-right: 5px;
-`;
-
 export const ImgLogo = styled.img`
   float: left;
   width: 40px;
@@ -29,6 +23,22 @@ export const NavbarInfo = styled.div`
     background-color: #662275;
     cursor: pointer;
   }
+`;
+
+export const Img = styled.img`
+  width: 40px;
+  height: 40px;
+  margin-right: 5px;
+`;
+
+export const Elipsis = styled.div`
+  white-space: nowrap; 
+  max-width: 160px; 
+  overflow: hidden;
+  text-overflow: ellipsis; 
+  display: inline-block;
+  vertical-align: middle;
+  text-align: left;
 `;
 
 export const DivLeftNavbar = styled.div`
@@ -55,15 +65,6 @@ export const DivLogo = styled.div`
 export const DivIconMenu = styled.div`
   display: inline-block;
   margin-left: 20px;
-`;
-
-export const Elipsis = styled.div`
-  white-space: nowrap; 
-  width: 160px; 
-  overflow: hidden;
-  text-overflow: ellipsis; 
-  display: inline-block;
-  vertical-align: middle;
 `;
 
 export const DivOptionsMenu = styled.div`
