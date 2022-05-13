@@ -4,7 +4,7 @@ export const Container = styled.div`
   padding-bottom: 420px;
   background-color: white;
   margin: 0;
-  max-width: 1400px;
+  max-width: 100%;
 `;
 
 export const H1 = styled.h1` 

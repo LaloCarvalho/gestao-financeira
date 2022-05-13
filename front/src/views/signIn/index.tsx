@@ -40,6 +40,14 @@ const SignIn: React.FC = () => {
         })
         .catch((error: any) => {
           console.log(error.result)
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'Email ou senha inválidos!',
+            toast: true,
+            showConfirmButton: false,
+            timer: 3000
+          })
         })
         .finally(() => {
         });

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import * as S from "./styles";
 import GenericMenu from "../../components/genericMenu";
 import GenericFooter from "../../components/genericFooter";
