@@ -97,6 +97,43 @@ export const Teste2 = styled(ListItem)`
   font-family: "Open Sans";  
 `;
 
+export const Button = styled.button` 
+  font-family: 'Open Sans', sans-serif;
+  color: white;
+  background: linear-gradient(-30deg,#3b02ed,#8e2ae0 55%);
+  margin: 20px 10px 10px 10px;
+  padding: 15px 15px;
+  width: 150px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  border: none;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: bold;
+
+  &:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+  }
+`;
+
+export const DivNew = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const DateContainer = styled.div`
+  border: 1px solid #ccc;
+  width: 350px;
+  display: inline-block;
+  border-radius: 3px;
+  margin-top: 8px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  padding: 10px;
+  text-align: left;
+`;
+
 export const navbar = { backgroundColor: "#200733", align: "right" };
 
 export const menuItens = { fontFamily: "Open Sans", textDecoration: "none", color: "black" };

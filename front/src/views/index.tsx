@@ -3,8 +3,6 @@ export {default as SignIn} from './signIn';
 export {default as SignUp} from './signUp';
 export {default as Contact} from './contact';
 export {default as CredicardRegister} from './credicardRegister';
-export {default as Income} from './income';
-export {default as Expense} from './expense';
 export {default as Report} from './report';
 export {default as Settings} from './settings';
 export {default as UserHome} from './userHome';

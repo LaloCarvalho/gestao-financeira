@@ -23,6 +23,7 @@ import AssessmentOutlinedIcon from '@mui/icons-material/AssessmentOutlined';
 import MovingOutlinedIcon from '@mui/icons-material/MovingOutlined';
 import TrendingDownOutlinedIcon from '@mui/icons-material/TrendingDownOutlined';
 import AccountBalanceOutlinedIcon from '@mui/icons-material/AccountBalanceOutlined';
+import AddIcon from '@mui/icons-material/Add';
 import photo from "./assets/photo.png";
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
@@ -31,6 +32,13 @@ import logo from "./assets/logo.png";
 import Link from '@material-ui/core/Link';
 import { SecurityContext, ServicesContext } from "../../hooks";
 import { Logout } from "@mui/icons-material";
+import Modal from '@mui/material/Modal';
+import Fade from '@mui/material/Fade';
+import Typography from '@mui/material/Typography';
+import Backdrop from '@mui/material/Backdrop';
+import TextBox from "../../components/textBox";
+import Income from "./income";
+import Expense from "./expense";
 
 const drawerWidth = 240;
 
@@ -103,14 +111,29 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 );
 
 const UserMenu: React.FC = ({ children }) => {
-  const [anchor, setAnchor] = useState<null | HTMLElement>(null);  
+  const [anchor, setAnchor] = useState<null | HTMLElement>(null);
   const storedOpen = localStorage.getItem('drawerOpen') === "true";
   const [open, setOpen] = useState(storedOpen);
-  const openUserProfile = Boolean(anchor);  
+  const openUserProfile = Boolean(anchor);
   const { User, SetUser } = useContext(SecurityContext);
   const { api } = useContext(ServicesContext);
+  const [openButtonNew, setOpenButtonNew] = React.useState(false);
+  const [openIncomeModal, setOpenIncomeModal] = React.useState(false);
+  const [openExpenseModal, setOpenExpenseModal] = React.useState(false);
+  const [incomeValue, setIncomeValue] = useState<string>("");
 
-  
+  const styleButtonNew = {
+    position: 'absolute' as 'absolute',
+    top: '17%',
+    left: open ? '22%' : '13%',
+    transform: 'translate(-50%, -50%)',
+    width: 250,
+    bgcolor: 'background.paper',
+    borderRadius: '20px',
+    boxShadow: 24,
+    p: 0,
+  };
+
   useEffect(() => {
   }, []);
 
@@ -129,7 +152,7 @@ const UserMenu: React.FC = ({ children }) => {
       setOpen(false);
       localStorage.setItem('drawerOpen', "false");
     }
- };
+  };
 
   const handleUserMenuOpen = () => {
     handleDrawerOpen();
@@ -139,78 +162,67 @@ const UserMenu: React.FC = ({ children }) => {
     handleDrawerOpen();
   };
 
-const itemsList = [
-  {
-    text: "Início",
-    icon: <HomeOutlinedIcon />,
-    href: "/userHome"
-  },
-  {
-    text: "Receitas",
-    icon: <MovingOutlinedIcon />,
-    href: "/income"
-  },
-  {
-    text: "Despesas",
-    icon: <TrendingDownOutlinedIcon />,
-    href: "/expense"
-  },
-  {
-    text: "Contas de Banco",
-    icon: <AccountBalanceOutlinedIcon />,
-    href: "/accounts"
-  },
-  {
-    text: "Cartões de Crédito",
-    icon: <CreditCardOutlinedIcon />,
-    href: "/credicardRegister"
-  },
-  {
-    text: "Relatórios",
-    icon: <AssessmentOutlinedIcon />,
-    href: "/report"
-  },
-]
+  const itemsList = [
+    {
+      text: "Início",
+      icon: <HomeOutlinedIcon />,
+      href: "/userHome"
+    },
+    {
+      text: "Contas de Banco",
+      icon: <AccountBalanceOutlinedIcon />,
+      href: "/accounts"
+    },
+    {
+      text: "Cartões de Crédito",
+      icon: <CreditCardOutlinedIcon />,
+      href: "/credicardRegister"
+    },
+    {
+      text: "Relatórios",
+      icon: <AssessmentOutlinedIcon />,
+      href: "/report"
+    },
+  ]
 
-const itemsList2 = [
-  {
-    text: "Configurações",
-    icon: <SettingsOutlinedIcon />,
-    href: "/settings"
-  },
-]
+  const itemsList2 = [
+    {
+      text: "Configurações",
+      icon: <SettingsOutlinedIcon />,
+      href: "/settings"
+    },
+  ]
 
+  const LogOut = () => {
+    SetUser(undefined);
+  };
 
-const LogOut = () => {
-  SetUser(undefined);
-};
+  const Profile = () => {
+    Teste();
+  };
 
-const Profile = () => {
-  Teste();
-};
+  const Settings = () => {
 
-const Settings = () => {
-  
-};
+  };
 
-const Teste = () => {
-  try {
-    api.user.getTeste(
-      api,
-    )
-      .then((result: any) => {
-        console.log(result.data);
-      })
-      .catch((error: any) => {
-        console.log(error.result)
-      })
-      .finally(() => {
-      });
+  const Teste = () => {
+    try {
+      api.user.getTeste(
+        api,
+      )
+        .then((result: any) => {
+          console.log(result.data);
+        })
+        .catch((error: any) => {
+          console.log(error.result)
+        })
+        .finally(() => {
+        });
 
-  } catch (e: any) {
+    } catch (e: any) {
       console.log(e.message)
+    }
   }
-}
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -245,7 +257,7 @@ const Teste = () => {
               onClick={handleClick}
             >
               <S.NavbarInfo>
-                <S.Img src={photo} alt="User Photo" /> 
+                <S.Img src={photo} alt="User Photo" />
                 <S.Elipsis>{User?.name}</S.Elipsis>
                 <ArrowDropDownOutlinedIcon />
               </S.NavbarInfo>
@@ -304,34 +316,66 @@ const Teste = () => {
         {/* </DrawerHeader> */}
         <Divider />
         <S.DivOptionsMenu>
-        <List>
-          {itemsList.map((item, index) => {
-            const { text, icon, href } = item;
-            return (
-            <ListItem style={S.Drawerlist} button component={Link} key={text} href={href}>
-              {icon && <ListItemIcon style={S.DrawerlistIcon}>{icon}</ListItemIcon>}
-            <ListItemText primary={text} />
-            </ListItem>
+          <List>
+            <S.DivNew>
+              <S.Button onClick={() => {setOpenButtonNew(true)}}>
+                <AddIcon /> {open ? "Novo" : ""}
+              </S.Button>
+              <Modal
+                open={openButtonNew}
+                onClose={() => {setOpenButtonNew(false)}}
+                closeAfterTransition
+                BackdropComponent={Backdrop}
+                BackdropProps={{
+                  timeout: 500,
+                }}
+              >
+                <Fade in={openButtonNew}>
+                  <Box sx={styleButtonNew}>
+                    <ListItem style={S.Drawerlist} button component={Link} onClick={() => { setOpenButtonNew(false); setOpenIncomeModal(true) }}>
+                      {<ListItemIcon style={S.DrawerlistIcon}><MovingOutlinedIcon /></ListItemIcon>}
+                      <ListItemText primary={"Receita"} />
+                    </ListItem>
 
-            );
-          })}
-        </List>
-        
+                    <ListItem style={S.Drawerlist} button component={Link} onClick={() => { setOpenButtonNew(false); setOpenExpenseModal(true) }}>
+                      {<ListItemIcon style={S.DrawerlistIcon}><TrendingDownOutlinedIcon /></ListItemIcon>}
+                      <ListItemText primary={"Despesa"} />
+                    </ListItem>
+                  </Box>
+                </Fade>
+              </Modal>
+              <Income isOpen={openIncomeModal} close={() => { setOpenIncomeModal(false)}}></Income>
+              <Expense isOpen={openExpenseModal} close={() => { setOpenExpenseModal(false)}}></Expense>
+            </S.DivNew>
+          </List>
+          <List>
+            {itemsList.map((item, index) => {
+              const { text, icon, href } = item;
+              return (
+                <ListItem style={S.Drawerlist} button component={Link} key={text} href={href}>
+                  {icon && <ListItemIcon style={S.DrawerlistIcon}>{icon}</ListItemIcon>}
+                  <ListItemText primary={text} />
+                </ListItem>
+
+              );
+            })}
+          </List>
+
         </S.DivOptionsMenu>
         <Divider />
         <S.DivOptionsMenu>
-        <List>
-          {itemsList2.map((item, index) => {
-            const { text, icon, href } = item;
-            return (
-            <ListItem style={S.Drawerlist} button component={Link} key={text} href={href}>
-              {icon && <ListItemIcon style={S.DrawerlistIcon}>{icon}</ListItemIcon>}
-            <ListItemText primary={text} />
-            </ListItem>
+          <List>
+            {itemsList2.map((item, index) => {
+              const { text, icon, href } = item;
+              return (
+                <ListItem style={S.Drawerlist} button component={Link} key={text} href={href}>
+                  {icon && <ListItemIcon style={S.DrawerlistIcon}>{icon}</ListItemIcon>}
+                  <ListItemText primary={text} />
+                </ListItem>
 
-            );
-          })}
-        </List>
+              );
+            })}
+          </List>
         </S.DivOptionsMenu>
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3, background: "#f5f6fc" }}>
